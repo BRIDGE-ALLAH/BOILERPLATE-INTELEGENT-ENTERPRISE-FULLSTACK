@@ -1,0 +1,1 @@
+"""MoonWitness automation service."""
