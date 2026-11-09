@@ -24,7 +24,7 @@ jobs:
           bun-version: 1.4.4
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Run lint
         run: bun run lint
@@ -42,7 +42,7 @@ jobs:
           bun-version: 1.4.4
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Run type-check
         run: bun run type-check
@@ -83,7 +83,7 @@ jobs:
           bun-version: 1.4.4
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Run tests
         env:
@@ -106,7 +106,7 @@ jobs:
           bun-version: 1.4.4
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Run build
         run: bun run build:all
