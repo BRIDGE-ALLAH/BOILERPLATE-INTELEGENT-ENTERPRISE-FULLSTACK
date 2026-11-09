@@ -1,5 +1,5 @@
 // Menu Data - Centralized navigation data
-import type { NavSection } from "./types.js";
+import type { NavSection } from "./types";
 
 export const defaultVerticalMenuData: NavSection[] = [
   {

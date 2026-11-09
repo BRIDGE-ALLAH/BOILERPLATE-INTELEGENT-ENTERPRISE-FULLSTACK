@@ -1,19 +1,19 @@
 // @repo/auth - Authentication utilities for API and Web
-export * from './jwt.js';
-export * from './password.js';
-export * from './guards.js';
-export * from './types.js';
-export * from './abac.js';
+export * from './jwt';
+export * from './password';
+export * from './guards';
+export * from './types';
+export * from './abac';
 
 // Fastify authentication plugin
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { env } from '@repo/config';
 import { createErrorResponse, createSuccessResponse } from '@repo/utils';
 import { ERROR_CODES, HTTP_STATUS } from '@repo/constants';
-import { jwtService, extractTokenFromHeader, TokenPayload, UserRole, Permission, hasPermission, isTokenPayload } from './jwt.js';
-import { passwordService } from './password.js';
-import { requireRole, requirePermission } from './guards.js';
-import { policyEngine, requirePolicy, attachResource } from './abac.js';
+import { jwtService, extractTokenFromHeader, TokenPayload, UserRole, Permission, hasPermission, isTokenPayload } from './jwt';
+import { passwordService } from './password';
+import { requireRole, requirePermission } from './guards';
+import { policyEngine, requirePolicy, attachResource } from './abac';
 
 // Public routes that don't require authentication
 const PUBLIC_ROUTES = [

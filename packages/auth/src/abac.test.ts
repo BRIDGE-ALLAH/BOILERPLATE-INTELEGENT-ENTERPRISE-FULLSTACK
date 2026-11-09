@@ -1,7 +1,7 @@
 // ABAC Policy Engine Tests
 import { describe, it, expect, beforeEach } from 'bun:test';
-import { PolicyEngine, PolicyContext } from '../src/abac.js';
-import { UserRole, Permission } from '../src/types.js';
+import { PolicyEngine, PolicyContext } from '../src/abac';
+import { UserRole, Permission } from '../src/types';
 
 describe('PolicyEngine', () => {
   let engine: PolicyEngine;

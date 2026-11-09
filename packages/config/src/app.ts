@@ -1,4 +1,4 @@
- import { env } from './env.js';
+ import { env } from './env';
  
  // Fastify app configuration
  export const fastifyConfig = {

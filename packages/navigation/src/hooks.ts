@@ -1,6 +1,6 @@
 // Hooks
-export { useVerticalNav } from "./vertical-menu.js";
-export { useHorizontalNav } from "./horizontal-menu.js";
+export { useVerticalNav } from "./vertical-menu";
+export { useHorizontalNav } from "./horizontal-menu";
 
 import { useState, useEffect } from "react";
 

@@ -1,10 +1,10 @@
 // Utility exports for the monorepo
 
-export * from './response.js';
-export * from './pagination.js';
-export * from './validation.js';
-export * from './date.js';
-export * from './string.js';
+export * from './response';
+export * from './pagination';
+export * from './validation';
+export * from './date';
+export * from './string';
 
 // Re-export types from @repo/types
 export type { ApiResponse } from '@repo/types';

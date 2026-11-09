@@ -1,7 +1,7 @@
  // Centralized primary color configuration
  // Replaces apps/web/src/configs/primaryColorConfig.ts
  
- import { brandColors } from './colors.js';
+ import { brandColors } from './colors';
  
  export interface PrimaryColorConfig {
    primary: string;

@@ -1,5 +1,5 @@
 // @repo/ubme-core - Multi-Tenancy Engine
-import { RecordId } from './types.js';
+import { RecordId } from './types';
 
 export interface Tenant {
   id: RecordId;

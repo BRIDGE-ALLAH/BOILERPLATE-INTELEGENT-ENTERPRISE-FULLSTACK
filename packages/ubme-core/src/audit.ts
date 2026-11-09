@@ -1,5 +1,5 @@
 // @repo/ubme-core - Audit Trail System
-import { RecordId } from './types.js';
+import { RecordId } from './types';
 
 export enum AuditAction {
   CREATE = 'CREATE',

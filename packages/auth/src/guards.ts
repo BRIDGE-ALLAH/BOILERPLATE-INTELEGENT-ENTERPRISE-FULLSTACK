@@ -1,7 +1,7 @@
 // @repo/auth - Authentication guards and utilities
 
-import { extractTokenFromHeader, hasRole, hasPermission, TokenPayload, UserRole, Permission } from './jwt.js';
-import { jwtService } from './jwt.js';
+import { extractTokenFromHeader, hasRole, hasPermission, TokenPayload, UserRole, Permission } from './jwt';
+import { jwtService } from './jwt';
 
 // Type guard for TokenPayload
 export const isTokenPayload = (obj: any): obj is TokenPayload => {

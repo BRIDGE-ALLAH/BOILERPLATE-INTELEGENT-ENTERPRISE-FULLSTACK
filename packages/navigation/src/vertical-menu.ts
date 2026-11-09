@@ -1,7 +1,7 @@
 // Vertical Menu Components
 import { createContext, useContext, useState, useCallback, useMemo, useEffect, useRef } from "react";
-import type { MenuItem, NavSection, ChildrenType, BreakpointType } from "./types.js";
-import { RouterLink } from "./router-link.js";
+import type { MenuItem, NavSection, ChildrenType, BreakpointType } from "./types";
+import { RouterLink } from "./router-link";
 
 // Context
 interface VerticalNavContextProps {

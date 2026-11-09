@@ -1,2 +1,2 @@
-export * from "./env.js";
-export * from "./app.js";
+export * from "./env";
+export * from "./app";

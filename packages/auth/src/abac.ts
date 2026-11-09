@@ -1,5 +1,5 @@
 // @repo/auth - ABAC (Attribute-Based Access Control) policy engine
-import { TokenPayload, UserRole, Permission } from './types.js';
+import { TokenPayload, UserRole, Permission } from './types';
 
 export interface PolicyCondition {
   attribute: string;

@@ -1,3 +1,3 @@
 // Contexts
-export { VerticalNavProvider, useVerticalNav } from "./vertical-menu.js";
-export { HorizontalNavProvider, useHorizontalNav } from "./horizontal-menu.js";
+export { VerticalNavProvider, useVerticalNav } from "./vertical-menu";
+export { HorizontalNavProvider, useHorizontalNav } from "./horizontal-menu";

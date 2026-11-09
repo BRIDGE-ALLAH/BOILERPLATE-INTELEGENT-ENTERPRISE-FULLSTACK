@@ -1,4 +1,4 @@
- import { apiClient } from './client.js';
+ import { apiClient } from './client';
  import { User, CreateUserDto, UpdateUserDto, ApiResponse, PaginatedResponse } from '@repo/types';
  
  export const usersApi = {
