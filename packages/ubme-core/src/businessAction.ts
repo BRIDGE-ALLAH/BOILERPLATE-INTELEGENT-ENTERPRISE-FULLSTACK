@@ -43,7 +43,10 @@ export class ActionEngine implements ActionEngine {
     if (!action) {
       return Promise.resolve({ success: false, error: `Action '${actionName}' not found` });
     }
-    return action.execute(context, input);
+    return action.execute(context, input).catch((err: Error) => ({
+      success: false,
+      error: err.message,
+    }));
   }
 
   register(action: BusinessAction): void {

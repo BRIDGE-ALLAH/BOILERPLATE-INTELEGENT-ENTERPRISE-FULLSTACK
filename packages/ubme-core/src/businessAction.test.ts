@@ -1,9 +1,9 @@
-import { ActionEngine, BusinessAction } from './businessAction';
-import { ExecutionContext, PersistenceContext, Principal } from './types';
+import { ActionEngine, BusinessAction, ActionContext } from './businessAction';
+import { PersistenceContext } from './types';
 
 describe('ActionEngine', () => {
   let engine: ActionEngine;
-  let mockContext: ExecutionContext;
+  let mockContext: ActionContext;
   let mockPersistence: PersistenceContext;
 
   beforeEach(() => {
@@ -13,15 +13,9 @@ describe('ActionEngine', () => {
       transaction: async (fn: () => Promise<any>) => fn(),
     };
     mockContext = {
-      principal: { id: 'user-1', roles: ['admin'] },
+      principalId: 'user-1',
       tenantId: 'tenant-1',
-      organizationIds: ['org-1'],
-      activeOrganizationId: 'org-1',
-      locale: 'en_US',
-      timeZone: 'UTC',
       correlationId: 'corr-123',
-      capabilities: new Set(['action:execute']),
-      persistence: mockPersistence,
     };
   });
 
@@ -58,9 +52,10 @@ describe('ActionEngine', () => {
   test('execute returns action result', async () => {
     const action: BusinessAction = {
       name: 'test.action',
+      description: 'Test action',
       parameters: { value: 'number' },
       returns: { doubled: 'number' },
-      execute: async (_ctx: ExecutionContext, input: { value: number }) => ({ doubled: input.value * 2 }),
+      execute: async (_ctx: ActionContext, input: { value: number }) => ({ success: true, data: { doubled: input.value * 2 } }),
     };
     engine.register(action);
     const result = await engine.execute('test.action', mockContext, { value: 5 });
@@ -71,6 +66,7 @@ describe('ActionEngine', () => {
   test('execute catches and returns action errors', async () => {
     const action: BusinessAction = {
       name: 'fail.action',
+      description: 'Fail action',
       parameters: {},
       returns: {},
       execute: async () => { throw new Error('boom'); return { success: false }; },
@@ -85,6 +81,7 @@ describe('ActionEngine', () => {
     let transactionCalled = false;
     const action: BusinessAction = {
       name: 'txn.action',
+      description: 'Txn action',
       parameters: {},
       returns: {},
       execute: async () => {

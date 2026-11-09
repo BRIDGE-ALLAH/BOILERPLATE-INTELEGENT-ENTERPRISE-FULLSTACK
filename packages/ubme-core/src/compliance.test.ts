@@ -1,6 +1,6 @@
 // Data Governance & Compliance Tests
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { DataGovernanceEngine, ComplianceConfig, PIIFieldConfig, DataSubjectRequest } from '../src/compliance.js';
+import { DataGovernanceEngine, ComplianceConfig, PIIFieldConfig, DataSubjectRequest } from './compliance';
 
 describe('DataGovernanceEngine', () => {
   let engine: DataGovernanceEngine;

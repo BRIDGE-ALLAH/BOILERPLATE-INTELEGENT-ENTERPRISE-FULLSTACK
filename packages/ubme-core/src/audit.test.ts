@@ -1,6 +1,6 @@
 // Audit Trail System Tests
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { InMemoryAuditLogger, AuditAction, AuditSeverity, createAuditLogEntry } from '../src/audit.js';
+import { InMemoryAuditLogger, AuditAction, AuditSeverity, createAuditLogEntry } from './audit';
 
 describe('InMemoryAuditLogger', () => {
   let logger: InMemoryAuditLogger;
