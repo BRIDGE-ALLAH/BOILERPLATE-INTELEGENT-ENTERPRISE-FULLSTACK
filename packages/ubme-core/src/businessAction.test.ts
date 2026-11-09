@@ -28,6 +28,7 @@ describe('ActionEngine', () => {
   test('registers and retrieves an action', () => {
     const action: BusinessAction = {
       name: 'test.action',
+      description: 'Test action',
       parameters: { input: 'string' },
       returns: { result: 'string' },
       execute: async () => ({ success: true }),
@@ -39,9 +40,10 @@ describe('ActionEngine', () => {
   test('throws on duplicate action registration', () => {
     const action: BusinessAction = {
       name: 'dup.action',
+      description: 'Duplicate action',
       parameters: {},
       returns: {},
-      execute: async () => ({}),
+      execute: async () => ({ success: true }),
     };
     engine.register(action);
     expect(() => engine.register(action)).toThrow('already registered');
@@ -71,7 +73,7 @@ describe('ActionEngine', () => {
       name: 'fail.action',
       parameters: {},
       returns: {},
-      execute: async () => { throw new Error('boom'); },
+      execute: async () => { throw new Error('boom'); return { success: false }; },
     };
     engine.register(action);
     const result = await engine.execute('fail.action', mockContext, {});
@@ -87,7 +89,7 @@ describe('ActionEngine', () => {
       returns: {},
       execute: async () => {
         transactionCalled = true;
-        return { ok: true };
+        return { success: true };
       },
     };
     engine.register(action);

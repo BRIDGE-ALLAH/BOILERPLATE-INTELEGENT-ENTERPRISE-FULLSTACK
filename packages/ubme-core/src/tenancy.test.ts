@@ -1,5 +1,5 @@
 // Multi-Tenancy Engine Tests
-import { describe, it, expect, beforeEach } from 'bun:test';
+import { describe, it, expect, beforeEach } from '@jest/globals';
 import { TenantRegistry, TenantStatus, Tenant, DomainTenantResolver, HeaderTenantResolver, filterByTenant, createTenantScopedQuery } from '../src/tenancy.js';
 
 describe('TenantRegistry', () => {
