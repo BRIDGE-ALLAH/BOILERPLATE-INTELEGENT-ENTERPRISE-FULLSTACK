@@ -21,7 +21,8 @@
        "@repo/auth": ["../../packages/auth/src"],
        "@repo/constants": ["../../packages/constants/src"],
        "@repo/validation": ["../../packages/validation/src"],
-       "@repo/theme": ["../../packages/theme/src"]
+       "@repo/theme": ["../../packages/theme/src"],
+       "@repo/ubme-core": ["../../packages/ubme-core/src"]
      }
    },
    "include": ["src/**/*.ts"],
