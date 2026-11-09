@@ -82,6 +82,8 @@ if (!parsedEnv.success) {
 
 const env = parsedEnv.data as z.infer<typeof envSchema>;
 
+export const API_PREFIX: string = env.API_PREFIX;
+
 // Ensure JWT_SECRET is set in production
 if (env.NODE_ENV === 'production' && !env.JWT_SECRET) {
   throw new Error('JWT_SECRET is required in production - set at build time');

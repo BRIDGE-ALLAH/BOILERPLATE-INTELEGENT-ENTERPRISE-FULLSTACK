@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
-    "build": "bun build src/index.ts --outdir dist --minify",
+    "build": "bun build src/index.ts --outdir dist --minify --target bun",
     "start": "bun dist/index.js"
   },
   "dependencies": {
@@ -27,7 +27,8 @@
     "@sentry/node": "^11.11.0",
     "@sentry/tracing": "^7.120.4",
     "redis": "^4.6.11",
-    "@fastify/rate-limit": "^8.0.0"
+    "@fastify/rate-limit": "^8.0.0",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "bun-types": "latest"

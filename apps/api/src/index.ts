@@ -6,7 +6,7 @@ import { env, corsConfig, swaggerConfig, API_PREFIX } from '@repo/config';
 import { healthController } from './modules/health/health.controller.js';
 import { usersController } from './modules/users/users.controller.js';
 import { authController } from './modules/auth/auth.controller.js';
-import { setupErrorHandling, registerAuthPlugin, correlationIdMiddleware } from './core/middleware';
+import { setupErrorHandling, registerAuthPlugin } from './core/middleware';
 import { logger } from './core/logging';
 import { initObservability } from './core/observability';
 import { rateLimitPlugin } from '@repo/ubme-core/src/rate-limit';
@@ -41,6 +41,6 @@ await app.register(fastifySwaggerUi, { routePrefix: '/docs' });
 await registerAuthPlugin(app);
 
 // Controllers (routes) with error handling wrapper
-await app.register(healthController, { prefix: API_PREFIX });
-await app.register(usersController, { prefix: API_PREFIX });
-await app.register(authController, { prefix: API_PREFIX });
+await app.register(healthController, { prefix: env.API_PREFIX });
+await app.register(usersController, { prefix: env.API_PREFIX });
+await app.register(authController, { prefix: env.API_PREFIX });

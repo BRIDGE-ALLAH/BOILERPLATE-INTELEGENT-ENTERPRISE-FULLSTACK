@@ -104,4 +104,4 @@ export function isPublicRoute(): boolean {
 }
 
 // Re-export auth utilities
-export { extractTokenFromHeader, hasRole, hasPermission, jwtService, UserRole, Permission, TokenPayload, isTokenPayload };
+export { extractTokenFromHeader, hasRole, hasPermission, jwtService, UserRole, Permission, TokenPayload };

@@ -1,9 +1,11 @@
+import { PrismaClient } from '@prisma/client';
 import { FastifyInstance } from 'fastify';
 import { AuthService } from './auth.service.js';
 import { createSuccessResponse, createErrorResponse } from '@repo/utils';
 import type { CreateUserDto } from '@repo/types';
 import { ERROR_CODES, HTTP_STATUS } from '@repo/constants';
-import { prisma } from '../core/index.js';
+
+const prisma = new PrismaClient();
 
 export async function authController(app: FastifyInstance) {
   // Login - public route (no auth required)
