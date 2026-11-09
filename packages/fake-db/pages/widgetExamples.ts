@@ -167,7 +167,7 @@ export const db: CardStatsType = {
       avatarSkin: 'light',
       chipText: '+24.5%',
       chipColor: 'success',
-      chipVariant: 'tonal'
+      chipVariant: 'outlined'
     }
   ],
   statsWithAreaChart: [

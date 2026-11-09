@@ -60,7 +60,8 @@
     "@tiptap/extension-underline": "3.33.0",
     "@tiptap/pm": "3.33.0",
     "@tiptap/react": "3.33.0",
-    "@tiptap/starter-kit": "3.33.0"
+    "@tiptap/starter-kit": "3.33.0",
+    "@tiptap/extension-color": "3.14.0"
   },
   "engines": {
     "bun": ">=1.0.0"

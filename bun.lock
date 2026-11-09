@@ -10,6 +10,7 @@
       "devDependencies": {
         "@tiptap/core": "3.33.0",
         "@tiptap/extension-bold": "3.33.0",
+        "@tiptap/extension-color": "3.14.0",
         "@tiptap/extension-italic": "3.33.0",
         "@tiptap/extension-list": "3.33.0",
         "@tiptap/extension-list-item": "3.33.0",
@@ -82,7 +83,6 @@
         "@repo/utils": "workspace:*",
         "@repo/validation": "workspace:*",
         "@tanstack/match-sorter-utils": "8.19.4",
-        "@tiptap/extension-color": "3.14.0",
         "apexcharts": "3.49.0",
         "bootstrap-icons": "1.13.1",
         "classnames": "2.5.1",

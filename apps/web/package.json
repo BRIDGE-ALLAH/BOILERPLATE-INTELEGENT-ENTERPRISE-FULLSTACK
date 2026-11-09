@@ -39,7 +39,6 @@
     "@repo/validation": "workspace:*",
     "@reduxjs/toolkit": "2.11.2",
     "@tanstack/match-sorter-utils": "8.19.4",
-    "@tiptap/extension-color": "3.14.0",
     "apexcharts": "3.49.0",
     "bootstrap-icons": "1.13.1",
     "classnames": "2.5.1",
