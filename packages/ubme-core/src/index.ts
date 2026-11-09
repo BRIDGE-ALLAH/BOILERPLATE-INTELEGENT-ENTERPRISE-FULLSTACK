@@ -23,3 +23,19 @@ export {
   AuditQuery,
   RetentionPolicy,
 } from './audit';
+
+export {
+  Tenant,
+  TenantSettings,
+  TenantStatus,
+  TenantContext,
+  TenantResolver,
+  DomainTenantResolver,
+  HeaderTenantResolver,
+  TenantRegistry,
+  tenantRegistry,
+  createTenantMiddleware,
+  requireTenant,
+  filterByTenant,
+  createTenantScopedQuery,
+} from './tenancy';
