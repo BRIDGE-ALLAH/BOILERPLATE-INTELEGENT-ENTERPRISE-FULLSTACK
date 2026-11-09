@@ -259,7 +259,7 @@ describe('DataGovernanceEngine', () => {
 
     it('should allow custom compliance config', () => {
       const customEngine = new DataGovernanceEngine({
-        hipaa: { enabled: true, phiFields: ['medical_record'], auditLevel: 'comprehensive' },
+        hipaa: { enabled: true, auditLogRequired: true, encryptionAtRestRequired: true, phiFields: ['medical_record'], auditLevel: 'comprehensive' },
       });
       const config = customEngine.getComplianceConfig();
       expect(config.hipaa.enabled).toBe(true);
@@ -275,7 +275,7 @@ describe('DataGovernanceEngine', () => {
     });
 
     it('should allow custom encryption config', () => {
-      const customEngine = new DataGovernanceEngine({}, { algorithm: 'aes-128-gcm', keyRotationDays: 30 });
+      const customEngine = new DataGovernanceEngine({}, { algorithm: 'aes-128-gcm', keyLength: 32, ivLength: 12, keyRotationDays: 30 });
       const config = customEngine.getEncryptionConfig();
       expect(config.algorithm).toBe('aes-128-gcm');
       expect(config.keyRotationDays).toBe(30);

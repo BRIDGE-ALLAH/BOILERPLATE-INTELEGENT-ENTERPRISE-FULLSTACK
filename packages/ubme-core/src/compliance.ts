@@ -39,9 +39,9 @@ export interface RetentionPolicy {
 }
 
 export interface PIIFieldConfig {
-  readonly name: string;
-  readonly classifiers: readonly string[];
-  readonly mask: string;
+  readonly name?: string;
+  readonly classifiers?: readonly string[];
+  readonly mask?: string;
   readonly type?: string;
   readonly encrypt?: boolean;
   readonly maskInLogs?: boolean;
@@ -76,7 +76,7 @@ export interface DataSubjectRequest {
 }
 
 export interface EncryptionConfig {
-  readonly algorithm: 'aes-256-gcm' | 'chacha20-poly1305';
+  readonly algorithm: 'aes-128-gcm' | 'aes-256-gcm' | 'chacha20-poly1305';
   readonly keyLength: number;
   readonly ivLength: number;
   readonly keyRotationDays?: number;
