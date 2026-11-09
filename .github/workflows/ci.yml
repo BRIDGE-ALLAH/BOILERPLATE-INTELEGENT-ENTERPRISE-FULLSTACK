@@ -111,6 +111,7 @@ jobs:
       - name: Run build
         env:
           JWT_SECRET: ci-build-secret-do-not-use-in-production
+          DATABASE_URL: postgres://moonwitness:moonwitness@localhost:5433/moonwitness
         run: |
-          cd apps/web && npx prisma generate
+          cd apps/web && bunx prisma generate --schema src/prisma/schema.prisma
           cd .. && bun run build:all

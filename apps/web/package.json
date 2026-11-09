@@ -26,6 +26,7 @@
     "@mui/material": "7.3.6",
     "@mui/material-nextjs": "7.3.6",
     "@prisma/client": "6.19.1",
+    "prisma": "6.19.1",
     "@repo/api-client": "workspace:*",
     "@repo/auth": "workspace:*",
     "@repo/config": "workspace:*",
