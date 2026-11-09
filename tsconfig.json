@@ -32,6 +32,7 @@
       "@repo/fake-db": ["packages/fake-db"],
       "@repo/fake-db/*": ["packages/fake-db/*"],
       "@/*": ["apps/web/src/*"],
+      "@core/*": ["apps/web/src/@core/*"],
       "@ubme/core": ["packages/ubme-core/src"],
       "@ubme/mikroorm": ["packages/ubme-mikroorm/src"],
       "@ubme/core": ["packages/ubme-core"],

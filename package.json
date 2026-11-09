@@ -47,7 +47,20 @@
     "turbo": "^1.13.0",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3",
-    "prettier-plugin-tailwindcss": "^0.5.0"
+    "prettier-plugin-tailwindcss": "^0.5.0",
+    "@tiptap/core": "3.33.0",
+    "@tiptap/extension-bold": "3.33.0",
+    "@tiptap/extension-italic": "3.33.0",
+    "@tiptap/extension-list": "3.33.0",
+    "@tiptap/extension-list-item": "3.33.0",
+    "@tiptap/extension-placeholder": "3.33.0",
+    "@tiptap/extension-strike": "3.33.0",
+    "@tiptap/extension-text-align": "3.33.0",
+    "@tiptap/extension-text-style": "3.33.0",
+    "@tiptap/extension-underline": "3.33.0",
+    "@tiptap/pm": "3.33.0",
+    "@tiptap/react": "3.33.0",
+    "@tiptap/starter-kit": "3.33.0"
   },
   "engines": {
     "bun": ">=1.0.0"
