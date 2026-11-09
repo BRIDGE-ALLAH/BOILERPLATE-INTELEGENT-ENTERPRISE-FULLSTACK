@@ -2,10 +2,11 @@
 import Grid from '@mui/material/Grid'
 
 // Types Imports
+import CardStatsWithAreaChart from '@components/card-statistics/StatsWithAreaChart'
+
 import type { CardStatsWithAreaChartProps } from '@/types/pages/widgetTypes'
 
 // Component Imports
-import CardStatsWithAreaChart from '@components/card-statistics/StatsWithAreaChart'
 
 const CardStatsLineAreaCharts = ({ data }: { data: CardStatsWithAreaChartProps[] }) => {
   const renderData = data

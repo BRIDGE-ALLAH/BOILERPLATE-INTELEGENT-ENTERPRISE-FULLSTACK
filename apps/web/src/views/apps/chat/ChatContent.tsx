@@ -9,17 +9,20 @@ import IconButton from '@mui/material/IconButton'
 import CardContent from '@mui/material/CardContent'
 
 // Type Imports
+import OptionMenu from '@core/components/option-menu'
+
+import CustomAvatar from '@core/components/mui/Avatar'
+
 import type { AppDispatch } from '@/redux-store'
 import type { ChatDataType, ContactType } from '@/types/apps/chatTypes'
 
 // Component Imports
-import OptionMenu from '@core/components/option-menu'
 import AvatarWithBadge from './AvatarWithBadge'
 import { statusObj } from './SidebarLeft'
 import ChatLog from './ChatLog'
 import SendMsgForm from './SendMsgForm'
 import UserProfileRight from './UserProfileRight'
-import CustomAvatar from '@core/components/mui/Avatar'
+
 
 type Props = {
   chatStore: ChatDataType

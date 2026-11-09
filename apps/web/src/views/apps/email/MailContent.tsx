@@ -75,7 +75,7 @@ const MailContent = (props: Props) => {
     })
 
     if (folder === 'trash') {
-      dispatch(deleteTrashEmails({ emailIds: [emailId] }))
+      dispatch(deleteTrashEmails())
     } else {
       dispatch(moveEmailsToFolder({ emailIds: [emailId], folder: 'trash' }))
     }
@@ -90,7 +90,7 @@ const MailContent = (props: Props) => {
   // Toggle star for single email
   const handleToggleStarEmail = (e: MouseEvent, id: number) => {
     e.stopPropagation()
-    dispatch(toggleStarEmail({ emailId: id }))
+    dispatch(toggleStarEmail(id))
   }
 
   return (

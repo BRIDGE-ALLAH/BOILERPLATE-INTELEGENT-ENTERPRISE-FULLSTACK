@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 // Component Imports
 import StatisticsCard from '@views/pages/widget-examples/statistics/StatisticsCard'
 import Square from '@views/pages/widget-examples/statistics/Square'
-import DistributedBarChartOrder from '@/views/pages/widget-examples/statistics/DistributedBarChartOrder'
+
 import LineAreaYearlySalesChart from '@views/pages/widget-examples/statistics/LineAreaYearlySalesChart'
 import LineChartProfit from '@views/pages/widget-examples/statistics/LineChartProfit'
 import BarChartSessionsWithNegativeValues from '@views/pages/widget-examples/statistics/BarChartSessionsWithNegativeValues'
@@ -23,6 +23,8 @@ import HorizontalStatisticsCard from '@views/pages/widget-examples/statistics/Ho
 import CustomerStatisticsCard from '@views/pages/widget-examples/statistics/CustomerStatisticsCard'
 import LogisticsStatisticsCard from '@views/apps/logistics/dashboard/LogisticsStatisticsCard'
 import UserListCards from '@views/pages/widget-examples/statistics/UserListCards'
+
+import DistributedBarChartOrder from '@/views/pages/widget-examples/statistics/DistributedBarChartOrder'
 
 // Data Imports
 import { getStatisticsData } from '@/app/server/actions'

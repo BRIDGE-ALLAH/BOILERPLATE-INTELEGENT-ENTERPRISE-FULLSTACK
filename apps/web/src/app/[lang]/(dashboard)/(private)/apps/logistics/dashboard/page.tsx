@@ -7,8 +7,10 @@ import LogisticsVehicleOverview from '@views/apps/logistics/dashboard/LogisticsV
 import LogisticsShipmentStatistics from '@views/apps/logistics/dashboard/LogisticsShipmentStatistics'
 import LogisticsDeliveryPerformance from '@views/apps/logistics/dashboard/LogisticsDeliveryPerformance'
 import LogisticsDeliveryExceptions from '@views/apps/logistics/dashboard/LogisticsDeliveryExceptions'
-import LogisticsOrdersByCountries from '@/views/apps/logistics/dashboard/LogisticsOrdersByCountries'
+
 import LogisticsOverviewTable from '@views/apps/logistics/dashboard/LogisticsOverviewTable'
+
+import LogisticsOrdersByCountries from '@/views/apps/logistics/dashboard/LogisticsOrdersByCountries'
 
 //Data Imports
 import { getLogisticsData, getStatisticsData } from '@/app/server/actions'

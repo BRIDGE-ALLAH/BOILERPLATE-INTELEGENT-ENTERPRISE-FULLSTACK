@@ -8,15 +8,12 @@ import { useTheme } from '@mui/material/styles'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Type Imports
-import type { getDictionary } from '@/utils/getDictionary'
 import type { VerticalMenuContextProps } from '@menu/components/vertical-menu/Menu'
 
 // Component Imports
 import { Menu, SubMenu, MenuItem, MenuSection } from '@menu/vertical-menu'
 import CustomChip from '@core/components/mui/Chip'
-import IconMoonStars from '@tabler/icons-react/IconMoonStars'
-import IconServer from '@tabler/icons-react/IconServer'
-import IconContainer from '@tabler/icons-react/IconContainer'
+import { IconMoonStars as MoonStars, IconServer as Server, IconContainer as Container } from '@tabler/icons-react'
 import { brandProduct } from '@repo/brand'
 
 // import { GenerateVerticalMenu } from '@components/GenerateMenu'
@@ -30,6 +27,8 @@ import StyledVerticalNavExpandIcon from '@menu/styles/vertical/StyledVerticalNav
 // Style Imports
 import menuItemStyles from '@core/styles/vertical/menuItemStyles'
 import menuSectionStyles from '@core/styles/vertical/menuSectionStyles'
+
+import type { getDictionary } from '@/utils/getDictionary'
 
 // Menu Data Imports
 // import menuData from '@/data/navigation/verticalMenuData'
@@ -329,9 +328,9 @@ const VerticalMenu = ({ dictionary, scrollMenu }: Props) => {
             <MenuItem href={`/${locale}/charts/apex-charts`}>{dictionary['navigation'].apex}</MenuItem>
             <MenuItem href={`/${locale}/charts/recharts`}>{dictionary['navigation'].recharts}</MenuItem>
           </SubMenu>
-          <SubMenu label={brandProduct.labels.module} icon={<IconMoonStars />}>
-            <MenuItem href={`/${locale}/${brandProduct.slug}/${brandProduct.pages.observatory}`} icon={<IconServer />}>{brandProduct.labels.observatory}</MenuItem>
-            <MenuItem href={`/${locale}/${brandProduct.slug}/${brandProduct.pages.record}`} icon={<IconContainer />} disabled>{brandProduct.labels.record}</MenuItem>
+          <SubMenu label={brandProduct.labels.module} icon={<MoonStars />}>
+            <MenuItem href={`/${locale}/${brandProduct.slug}/${brandProduct.pages.observatory}`} icon={<Server />}>{brandProduct.labels.observatory}</MenuItem>
+            <MenuItem href={`/${locale}/${brandProduct.slug}/${brandProduct.pages.record}`} icon={<Container />} disabled>{brandProduct.labels.record}</MenuItem>
           </SubMenu>
           <MenuItem
             icon={<i className='tabler-cards' />}

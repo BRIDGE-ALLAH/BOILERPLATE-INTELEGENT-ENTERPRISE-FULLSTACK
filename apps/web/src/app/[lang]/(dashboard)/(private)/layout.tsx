@@ -19,14 +19,18 @@ import VerticalFooter from '@components/layout/vertical/Footer'
 import HorizontalFooter from '@components/layout/horizontal/Footer'
 import Customizer from '@core/components/customizer'
 import ScrollToTop from '@core/components/scroll-to-top'
+
+import { i18n, resolveLocale } from '@configs/i18n'
+
+import { getMode, getSystemMode } from '@core/utils/serverHelpers'
+
 import AuthGuard from '@/hocs/AuthGuard'
 
 // Config Imports
-import { i18n, resolveLocale } from '@configs/i18n'
 
 // Util Imports
 import { getDictionary } from '@/utils/getDictionary'
-import { getMode, getSystemMode } from '@core/utils/serverHelpers'
+
 
 const Layout = async (props: ChildrenType & { params: Promise<{ lang: string }> }) => {
   const params = await props.params

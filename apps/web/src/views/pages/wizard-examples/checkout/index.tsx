@@ -15,14 +15,16 @@ import { styled } from '@mui/material/styles'
 import type { StepperProps } from '@mui/material/Stepper'
 
 // Component Imports
+import DirectionalIcon from '@components/DirectionalIcon'
+
+import StepperWrapper from '@core/styles/stepper'
+
 import StepCart from './StepCart'
 import StepAddress from './StepAddress'
 import StepPayment from './StepPayment'
 import StepConfirmation from './StepConfirmation'
-import DirectionalIcon from '@components/DirectionalIcon'
 
 // Styled Component Imports
-import StepperWrapper from '@core/styles/stepper'
 
 // Vars
 const steps = [

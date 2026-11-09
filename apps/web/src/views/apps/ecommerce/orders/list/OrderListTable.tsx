@@ -36,7 +36,7 @@ import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
 import type { ThemeColor } from '@core/types'
-import type { OrderType } from '@/types/apps/ecommerceTypes'
+
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -46,11 +46,13 @@ import CustomTextField from '@core/components/mui/TextField'
 import TablePaginationComponent from '@components/TablePaginationComponent'
 
 // Util Imports
+import tableStyles from '@core/styles/table.module.css'
+
 import { getInitials } from '@/utils/getInitials'
 import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
-import tableStyles from '@core/styles/table.module.css'
+import type { OrderType } from '@/types/apps/ecommerceTypes'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {

@@ -6,7 +6,6 @@ import type { ShortcutsType } from '@components/layout/shared/ShortcutsDropdown'
 import type { NotificationsType } from '@components/layout/shared/NotificationsDropdown'
 
 // Component Imports
-import NavToggle from './NavToggle'
 import NavSearch from '@components/layout/shared/search'
 import LanguageDropdown from '@components/layout/shared/LanguageDropdown'
 import ModeDropdown from '@components/layout/shared/ModeDropdown'
@@ -16,6 +15,8 @@ import UserDropdown from '@components/layout/shared/UserDropdown'
 
 // Util Imports
 import { verticalLayoutClasses } from '@layouts/utils/layoutClasses'
+
+import NavToggle from './NavToggle'
 
 // Vars
 const shortcuts: ShortcutsType[] = [

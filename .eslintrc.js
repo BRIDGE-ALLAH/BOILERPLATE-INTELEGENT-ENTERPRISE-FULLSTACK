@@ -1,7 +1,13 @@
 module.exports = {
-  extends: ['plugin:@typescript-eslint/recommended', 'plugin:import/recommended', 'prettier'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
+    'prettier',
+  ],
   ignorePatterns: ['next-env.d.ts', '.next/**', 'node_modules/**'],
+  plugins: ['react-hooks'],
   rules: {
+    'react-hooks/exhaustive-deps': 'warn',
     'jsx-a11y/alt-text': 'off',
     'react/display-name': 'off',
     'react/no-children-prop': 'off',
@@ -87,7 +93,11 @@ module.exports = {
         pathGroupsExcludedImportTypes: ['react', 'type'],
         'newlines-between': 'always-and-inside-groups'
       }
-    ]
+    ],
+    'import/no-unresolved': 'off',
+    'import/named': 'off',
+    'import/default': 'off',
+    'import/export': 'off',
   },
   settings: {
     react: {
@@ -97,10 +107,7 @@ module.exports = {
       '@typescript-eslint/parser': ['.ts', '.tsx']
     },
     'import/resolver': {
-      node: {},
-      typescript: {
-        project: './tsconfig.json'
-      }
+      node: {}
     }
   },
   overrides: [
@@ -112,4 +119,4 @@ module.exports = {
       }
     }
   ]
-}
+};

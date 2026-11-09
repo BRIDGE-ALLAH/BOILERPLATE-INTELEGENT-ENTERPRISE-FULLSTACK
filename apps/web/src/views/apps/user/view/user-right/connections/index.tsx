@@ -66,7 +66,7 @@ const connectedAccountsArr: ConnectedAccountsType[] = [
   }
 ]
 
-< SocialAccountsType[] = [
+const socialAccountsArr: SocialAccountsType[] = [
   {
     title: 'Facebook',
     isConnected: false,

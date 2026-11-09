@@ -11,6 +11,7 @@ describe('RelationEngine', () => {
     engine.addRule({
       model: 'user',
       field: 'age',
+      dependsOn: ['minAge'],
       operator: 'gte',
       message: 'Age must be >= 18',
     });
@@ -23,10 +24,11 @@ describe('RelationEngine', () => {
     engine.addRule({
       model: 'user',
       field: 'age',
+      dependsOn: ['minAge'],
       operator: 'gte',
       message: 'Age must be >= 18',
     });
-    const result = engine.validate('user', { age: 21 });
+    const result = engine.validate('user', { age: 21, minAge: 18 });
     expect(result.valid).toBe(true);
     expect(result.errors).toHaveLength(0);
   });
@@ -35,10 +37,11 @@ describe('RelationEngine', () => {
     engine.addRule({
       model: 'user',
       field: 'age',
+      dependsOn: ['minAge'],
       operator: 'gte',
       message: 'Age must be >= 18',
     });
-    const result = engine.validate('user', { age: 16 });
+    const result = engine.validate('user', { age: 16, minAge: 18 });
     expect(result.valid).toBe(false);
     expect(result.errors).toContain('Age must be >= 18');
   });

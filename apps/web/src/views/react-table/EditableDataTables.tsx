@@ -12,10 +12,11 @@ import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '
 import type { ColumnDef, Row, RowData, Column, Table } from '@tanstack/react-table'
 
 // Type Imports
+import styles from '@core/styles/table.module.css'
+
 import type { DataType } from './data'
 
 // Style Imports
-import styles from '@core/styles/table.module.css'
 
 // Data Imports
 import defaultData from './data'

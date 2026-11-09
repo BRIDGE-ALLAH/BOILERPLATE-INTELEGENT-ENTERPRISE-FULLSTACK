@@ -1,18 +1,38 @@
 // @repo/api-client - Typed API client instance
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { Environment } from '@repo/config';
+import type { Environment } from '@repo/config';
+import { env } from '@repo/config';
 import {
   ApiResponse,
-  ApiError,
-  PaginatedResponse,
   User,
   CreateUserDto,
   UpdateUserDto,
 } from '@repo/types';
 
+type ApiError = {
+  success: boolean;
+  error: {
+    code: string;
+    message: string;
+    details?: Record<string, unknown>;
+  };
+  meta: {
+    timestamp: string;
+    version: string;
+  };
+};
+
+type PaginatedResponse<T> = {
+  items: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+};
+
 // Create configured axios instance
 const apiClient: AxiosInstance = axios.create({
-  baseURL: Environment.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/v1',
+  baseURL: env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/v1',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -39,7 +59,7 @@ apiClient.interceptors.request.use(
 
 // Response interceptor: standardize error handling
 apiClient.interceptors.response.use(
-  (response: AxiosResponse<ApiResponse>) => response.data,
+  (response: AxiosResponse) => ({ ...response, data: response.data }),
   (error) => {
     // Standardized error handling
     const errorResponse = {
@@ -61,6 +81,7 @@ apiClient.interceptors.response.use(
 
 // API client methods
 export const apiClientInstance = apiClient;
+export { apiClient };
 
 export const userApi = {
   getAll: (): Promise<ApiResponse<PaginatedResponse<User>>> =>
@@ -108,4 +129,5 @@ export const api = {
     apiClient.patch(endpoint, data).then(res => res.data),
 };
 
-export type { ApiResponse, ApiError, PaginatedResponse, User, CreateUserDto, UpdateUserDto };
+export type { ApiResponse, User, CreateUserDto, UpdateUserDto };
+export type { ApiError, PaginatedResponse };

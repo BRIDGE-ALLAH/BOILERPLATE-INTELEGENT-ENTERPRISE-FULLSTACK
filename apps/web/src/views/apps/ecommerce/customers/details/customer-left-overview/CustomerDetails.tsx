@@ -8,12 +8,13 @@ import Button from '@mui/material/Button'
 import type { ButtonProps } from '@mui/material/Button'
 
 // Type Imports
-import type { Customer } from '@/types/apps/ecommerceTypes'
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 import EditUserInfo from '@components/dialogs/edit-user-info'
 import OpenDialogOnElementClick from '@components/dialogs/OpenDialogOnElementClick'
+
+import type { Customer } from '@/types/apps/ecommerceTypes'
 
 const CustomerDetails = ({ customerData }: { customerData?: Customer }) => {
   // Vars

@@ -15,7 +15,6 @@ import CustomIconButton from '@core/components/mui/IconButton'
 import CustomAvatar from '@core/components/mui/Avatar'
 
 // Styled Component Imports
-import AppKeenSlider from '@/libs/styles/AppKeenSlider'
 
 // SVG Imports
 import HubSpot from '@assets/svg/front-pages/landing-page/HubSpot'
@@ -27,6 +26,8 @@ import Netflix from '@assets/svg/front-pages/landing-page/Netflix'
 
 // Styles Imports
 import frontCommonStyles from '@views/front-pages/styles.module.css'
+
+import AppKeenSlider from '@/libs/styles/AppKeenSlider'
 import styles from './styles.module.css'
 
 // Data

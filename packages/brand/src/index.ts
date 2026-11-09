@@ -9,6 +9,6 @@
 // Back-compat (deprecation): @repo/constants masih re-export getBranding/defaultBranding
 // dari sini; gunakan getBrand() untuk kode baru.
 
-export * from './config.js';
-export * from './product.js';
-export * from './vendor.js';
+export * from './config';
+export * from './product';
+export * from './vendor';

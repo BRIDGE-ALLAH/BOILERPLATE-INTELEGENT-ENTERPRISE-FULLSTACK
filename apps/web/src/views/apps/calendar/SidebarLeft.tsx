@@ -10,14 +10,15 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import classnames from 'classnames'
 
 // Types Imports
-import type { SidebarLeftProps, CalendarFiltersType } from '@/types/apps/calendarTypes'
 import type { ThemeColor } from '@core/types'
+
+import type { SidebarLeftProps, CalendarFiltersType } from '@/types/apps/calendarTypes'
 
 // Styled Component Imports
 import AppReactDatepicker from '@/libs/styles/AppReactDatepicker'
 
 // Slice Imports
-import { filterAllCalendarLabels, filterCalendarLabel, selectedEvent } from '@/redux-store/slices/calendar'
+import { filterAllCalendarLabels, filterCalendarLabel, setSelectedEvent as setSelectedEventAction } from '@/redux-store/slices/calendar'
 
 const SidebarLeft = (props: SidebarLeftProps) => {
   // Props
@@ -55,7 +56,7 @@ const SidebarLeft = (props: SidebarLeftProps) => {
     : null
 
   const handleSidebarToggleSidebar = () => {
-    dispatch(selectedEvent(null))
+    dispatch(setSelectedEventAction(null))
     handleAddEventSidebarToggle()
   }
 
@@ -123,7 +124,7 @@ const SidebarLeft = (props: SidebarLeftProps) => {
               <Checkbox
                 color='secondary'
                 checked={calendarStore.selectedCalendars.length === colorsArr.length}
-                onChange={e => dispatch(filterAllCalendarLabels(e.target.checked))}
+                onChange={e => dispatch(filterAllCalendarLabels(String(e.target.checked)))}
               />
             }
           />

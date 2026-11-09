@@ -39,34 +39,37 @@ export class RelationEngineImpl implements RelationEngine {
       const value = record[field];
       if (value === undefined) continue;
 
+      if (!rule.dependsOn?.length) continue;
+
+      const target = record[rule.dependsOn[0]];
       let passes = false;
       switch (rule.operator) {
         case 'eq':
-          passes = value === record[rule.dependsOn[0]];
+          passes = value === target;
           break;
         case 'neq':
-          passes = value !== record[rule.dependsOn[0]];
+          passes = value !== target;
           break;
         case 'gt':
-          passes = value > record[rule.dependsOn[0]];
+          passes = value > target;
           break;
         case 'gte':
-          passes = value >= record[rule.dependsOn[0]];
+          passes = value >= target;
           break;
         case 'lt':
-          passes = value < record[rule.dependsOn[0]];
+          passes = value < target;
           break;
         case 'lte':
-          passes = value <= record[rule.dependsOn[0]];
+          passes = value <= target;
           break;
         case 'contains':
-          passes = String(value).includes(String(record[rule.dependsOn[0]]));
+          passes = String(value).includes(String(target));
           break;
         case 'startsWith':
-          passes = String(value).startsWith(String(record[rule.dependsOn[0]]));
+          passes = String(value).startsWith(String(target));
           break;
         case 'endsWith':
-          passes = String(value).endsWith(String(record[rule.dependsOn[0]]));
+          passes = String(value).endsWith(String(target));
           break;
       }
 

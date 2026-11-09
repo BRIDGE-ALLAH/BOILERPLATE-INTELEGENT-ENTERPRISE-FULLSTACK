@@ -2,10 +2,11 @@
 import Grid from '@mui/material/Grid'
 
 // Types Imports
+import CardStatsSquare from '@components/card-statistics/CardStatsSquare'
+
 import type { CardStatsSquareProps } from '@/types/pages/widgetTypes'
 
 // Component Imports
-import CardStatsSquare from '@components/card-statistics/CardStatsSquare'
 
 const Square = ({ data }: { data: CardStatsSquareProps[] }) => {
   if (data) {

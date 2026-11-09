@@ -8,11 +8,12 @@ import dynamic from 'next/dynamic'
 import Grid from '@mui/material/Grid'
 
 // Type Imports
-import type { PricingPlanType } from '@/types/pages/pricingTypes'
 
 // Component Imports
 import UserLeftOverview from '@views/apps/user/view/user-left-overview'
 import UserRight from '@views/apps/user/view/user-right'
+
+import type { PricingPlanType } from '@/types/pages/pricingTypes'
 
 // Data Imports
 import { getPricingData } from '@/app/server/actions'

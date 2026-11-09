@@ -20,13 +20,15 @@ import classnames from 'classnames'
 import CustomIconButton from '@core/components/mui/IconButton'
 import CustomTextField from '@core/components/mui/TextField'
 import CustomAvatar from '@core/components/mui/Avatar'
+
+import themeConfig from '@configs/themeConfig'
+
 import DialogCloseButton from '../DialogCloseButton'
 import Keyboard from '@/assets/svg/Keyboard'
 import Paper from '@/assets/svg/Paper'
 import Rocket from '@/assets/svg/Rocket'
 
 // Config Imports
-import themeConfig from '@configs/themeConfig'
 
 type ReferEarnProps = {
   open: boolean

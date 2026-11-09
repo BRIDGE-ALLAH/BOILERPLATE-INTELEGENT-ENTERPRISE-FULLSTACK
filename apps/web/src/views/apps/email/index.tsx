@@ -13,6 +13,10 @@ import classnames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 
 // Type Imports
+import { useSettings } from '@core/hooks/useSettings'
+
+import { commonLayoutClasses } from '@layouts/utils/layoutClasses'
+
 import type { RootState } from '@/redux-store'
 
 // Slice Imports
@@ -23,10 +27,8 @@ import SidebarLeft from './SidebarLeft'
 import MailContent from './MailContent'
 
 // Hook Imports
-import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
-import { commonLayoutClasses } from '@layouts/utils/layoutClasses'
 
 const EmailWrapper = ({ folder, label }: { folder?: string; label?: string }) => {
   // States
@@ -62,7 +64,7 @@ const EmailWrapper = ({ folder, label }: { folder?: string; label?: string }) =>
 
   // Filter all emails based on folder and label
   useEffect(() => {
-    dispatch(filterEmails({ emails: emailStore.emails, folder, label, uniqueLabels }))
+    dispatch(filterEmails({ emails: emailStore.emails, folder, label }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emailStore.emails, folder, label])
 

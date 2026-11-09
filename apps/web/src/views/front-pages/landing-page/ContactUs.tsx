@@ -17,10 +17,11 @@ import CustomAvatar from '@core/components/mui/Avatar'
 import CustomTextField from '@core/components/mui/TextField'
 
 // Hook Imports
+import frontCommonStyles from '@views/front-pages/styles.module.css'
+
 import { useIntersection } from '@/hooks/useIntersection'
 
 // Styles Imports
-import frontCommonStyles from '@views/front-pages/styles.module.css'
 import styles from './styles.module.css'
 
 const ContactUs = () => {

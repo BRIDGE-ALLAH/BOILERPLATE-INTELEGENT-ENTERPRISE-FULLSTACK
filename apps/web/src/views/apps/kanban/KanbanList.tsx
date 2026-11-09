@@ -13,6 +13,8 @@ import { animations } from '@formkit/drag-and-drop'
 import classnames from 'classnames'
 
 // Type Imports
+import OptionMenu from '@core/components/option-menu'
+
 import type { TaskType, ColumnType, KanbanType } from '@/types/apps/kanbanTypes'
 import type { AppDispatch } from '@/redux-store'
 
@@ -20,7 +22,6 @@ import type { AppDispatch } from '@/redux-store'
 import { addTask, editColumn, deleteColumn, updateColumnTaskIds } from '@/redux-store/slices/kanban'
 
 // Component Imports
-import OptionMenu from '@core/components/option-menu'
 import TaskCard from './TaskCard'
 import NewTask from './NewTask'
 
@@ -95,14 +96,14 @@ const KanbanList = (props: KanbanListProps) => {
 
   // Delete Column
   const handleDeleteColumn = () => {
-    dispatch(deleteColumn({ columnId: column.id }))
+    dispatch(deleteColumn(column.id))
     setColumns(columns.filter(col => col.id !== column.id))
   }
 
   // Update column taskIds on drag and drop
   useEffect(() => {
     if (tasksList !== tasks) {
-      dispatch(updateColumnTaskIds({ id: column.id, tasksList }))
+      dispatch(updateColumnTaskIds({ columnId: column.id, taskIds: tasksList.map((t) => t?.id).filter(Boolean) as number[] }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksList])

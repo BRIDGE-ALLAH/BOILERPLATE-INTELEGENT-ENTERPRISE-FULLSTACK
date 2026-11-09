@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid'
 
 // Type Imports
 import type { Mode } from '@core/types'
+
 import type { Course } from '@/types/apps/academyTypes'
 
 // Component Imports

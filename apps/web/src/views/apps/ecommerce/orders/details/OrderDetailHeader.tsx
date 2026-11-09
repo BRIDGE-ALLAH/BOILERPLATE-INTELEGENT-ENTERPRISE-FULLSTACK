@@ -6,11 +6,13 @@ import type { ButtonProps } from '@mui/material/Button'
 
 // Type Imports
 import type { ThemeColor } from '@core/types'
-import type { OrderType } from '@/types/apps/ecommerceTypes'
+
 
 // Component Imports
 import ConfirmationDialog from '@components/dialogs/confirmation-dialog'
 import OpenDialogOnElementClick from '@components/dialogs/OpenDialogOnElementClick'
+
+import type { OrderType } from '@/types/apps/ecommerceTypes'
 
 type PayementStatusType = {
   text: string

@@ -24,7 +24,9 @@
     "@opentelemetry/auto-instrumentations-node": "^0.83.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.301.0",
     "@sentry/node": "^11.11.0",
-    "@sentry/tracing": "^7.120.4"
+    "@sentry/tracing": "^7.120.4",
+    "redis": "^4.6.11",
+    "@fastify/rate-limit": "^8.0.0"
   },
   "devDependencies": {
     "bun-types": "latest"

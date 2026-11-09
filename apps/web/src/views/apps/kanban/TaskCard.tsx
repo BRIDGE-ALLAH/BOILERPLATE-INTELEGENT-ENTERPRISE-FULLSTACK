@@ -16,15 +16,17 @@ import MenuItem from '@mui/material/MenuItem'
 import classnames from 'classnames'
 
 // Type Imports
+import type { ThemeColor } from '@core/types'
+
+import CustomAvatar from '@core/components/mui/Avatar'
+
 import type { ColumnType, TaskType } from '@/types/apps/kanbanTypes'
 import type { AppDispatch } from '@/redux-store'
-import type { ThemeColor } from '@core/types'
 
 // Slice Imports
 import { getCurrentTask, deleteTask } from '@/redux-store/slices/kanban'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
 
 // Styles Imports
 import styles from './styles.module.css'

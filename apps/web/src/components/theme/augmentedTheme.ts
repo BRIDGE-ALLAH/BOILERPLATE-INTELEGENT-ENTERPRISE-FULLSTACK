@@ -1,5 +1,4 @@
 // @app - Theme augmentation with component overrides
-import { type theme } from '@repo/theme';
 
 // Component-specific style overrides
 export const componentOverrides = {
@@ -66,7 +65,7 @@ export const componentOverrides = {
   },
 };
 
-export const augmentMuiTheme = (base: theme) => ({
+export const augmentMuiTheme = (base: any) => ({
   ...base,
   components: {
     ...base.components,

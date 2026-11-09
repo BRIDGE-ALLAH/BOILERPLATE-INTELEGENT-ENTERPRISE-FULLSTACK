@@ -3,11 +3,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
+import { useParams, useSearchParams, useRouter } from 'next/navigation'
+
 import type { SystemMode } from '@core/types'
 import { useColorScheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import type { Theme } from '@mui/material/styles'
-import { useParams, useSearchParams, useRouter } from 'next/navigation'
 import { brandProduct } from '@repo/brand'
 
 // MUI Imports
@@ -18,7 +18,6 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
-import Link from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
@@ -31,10 +30,9 @@ import Snackbar from '@mui/material/Snackbar'
 import LinearProgress from '@mui/material/LinearProgress'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import Copy from '@mui/material/Copy'
 
 // Tabler Icons
-import { MoonStars, ChevronLeft, Download, FileText, ExternalLink, Copy as CopyIcon, RefreshCw } from '@tabler/icons-react'
+import { IconMoonStars as MoonStars, IconChevronLeft as ChevronLeft, IconDownload as Download, IconFileText as FileText, IconExternalLink as ExternalLink } from '@tabler/icons-react'
 
 // Types from controller API
 type Port = {
@@ -161,7 +159,9 @@ function formatBytes(bytes: number): string {
   const units = ['B', 'KiB', 'MiB', 'GiB', 'TiB']
   const exp = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1)
   const amount = bytes / 1024 ** exp
-  return `${amount.toFixed(amount >= 10 || exp === 0 ? 0 : 1)} ${units[exp]}`
+
+  
+return `${amount.toFixed(amount >= 10 || exp === 0 ? 0 : 1)} ${units[exp]}`
 }
 
 function formatPercent(value: number): string {
@@ -170,39 +170,51 @@ function formatPercent(value: number): string {
 
 function formatUptime(seconds: number): string {
   const s = Math.max(0, Math.floor(seconds))
+
   if (s < 60) return `${s}s`
   const m = Math.floor(s / 60)
+
   if (m < 60) return `${m}m ${s % 60}s`
   const h = Math.floor(m / 60)
+
   if (h < 24) return `${h}h ${m % 60}m`
   const d = Math.floor(h / 24)
-  return `${d}d ${h % 24}h`
+
+  
+return `${d}d ${h % 24}h`
 }
 
 function relativeTime(iso: string): string {
   const date = new Date(iso)
   const seconds = Math.floor((Date.now() - date.getTime()) / 1000)
+
   if (!Number.isFinite(seconds) || seconds < 1) return 'just now'
   if (seconds < 60) return `${seconds}s ago`
   const minutes = Math.floor(seconds / 60)
+
   if (minutes < 60) return `${minutes}m ago`
   const hours = Math.floor(minutes / 60)
+
   if (hours < 24) return `${hours}h ago`
-  return `${Math.floor(hours / 24)}d ago`
+  
+return `${Math.floor(hours / 24)}d ago`
 }
 
 function stateColor(state: string): { bg: string; color: string } {
   const s = state.toLowerCase()
+
   if (s === 'running' || s === 'healthy') return { bg: '#c9f36b22', color: '#c9f36b' }
   if (s === 'degraded' || s === 'restarting' || s === 'starting') return { bg: '#ffc66d22', color: '#ffc66d' }
   if (s === 'unhealthy' || s === 'dead' || s === 'exited' || s === 'failed' || s === 'offline') return { bg: '#ff7b7222', color: '#ff7b72' }
-  return { bg: '#8fd8ff22', color: '#8fd8ff' }
+  
+return { bg: '#8fd8ff22', color: '#8fd8ff' }
 }
 
 function severityColor(sev: string): { bg: string; color: string } {
   if (sev === 'critical') return { bg: '#ff7b7222', color: '#ff7b72' }
   if (sev === 'warning') return { bg: '#ffc66d22', color: '#ffc66d' }
-  return { bg: '#8fd8ff22', color: '#8fd8ff' }
+  
+return { bg: '#8fd8ff22', color: '#8fd8ff' }
 }
 
 export default function RecordPage({ mode }: { mode: SystemMode }) {
@@ -210,6 +222,7 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const stack = (params.stack as string) || ''
+  const locale = (params.lang as string) || 'en'
   const format = searchParams.get('format')
   const [bundle, setBundle] = useState<Bundle | null>(null)
   const [loading, setLoading] = useState(true)
@@ -217,33 +230,40 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
   const [snackOpen, setSnackOpen] = useState(false)
   const [copied, setCopied] = useState<string | null>(null)
   const { mode: muiMode } = useColorScheme()
-  const isAboveMd = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   const _mode = (muiMode === 'system' ? mode : muiMode) || mode
 
   useEffect(() => {
     if (!stack) return
     let mounted = true
+
     async function load() {
       try {
         setLoading(true)
         const url = `${BASE}/api/v1/stacks/${encodeURIComponent(stack)}/bundle${format === 'markdown' ? '?format=markdown' : ''}`
+
         const res = await fetch(url, {
           cache: 'no-store',
           headers: { Accept: format === 'markdown' ? 'text/markdown' : 'application/json' },
         })
+
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
+
         if (format === 'markdown') {
           const markdown = await res.text()
+
           if (mounted) {
             setBundle({ stack, generated: new Date().toISOString(), summary: {} as Overview, docker: {} as DockerSummary, containers: [], services: [], events: [] } as Bundle)
+
             // We just show markdown in a simple view
             document.open()
             document.write(`<pre style="font-family:monospace;white-space:pre-wrap;padding:2rem;background:#090b0d;color:#f1f0ea;">${markdown.replace(/</g, '<').replace(/>/g, '>')}</pre>`)
             document.close()
-            return
+            
+return
           }
         } else {
           const data = await res.json()
+
           if (mounted) setBundle(data)
         }
       } catch (e: any) {
@@ -255,17 +275,21 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
         if (mounted) setLoading(false)
       }
     }
+
     load()
-    return () => { mounted = false }
+    
+return () => { mounted = false }
   }, [stack, format])
 
   const handleDownload = async (fmt: 'json' | 'markdown') => {
     try {
       const url = `${BASE}/api/v1/stacks/${encodeURIComponent(stack)}/bundle?format=${fmt}`
       const res = await fetch(url, { cache: 'no-store' })
+
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const blob = await res.blob()
       const link = document.createElement('a')
+
       link.href = URL.createObjectURL(blob)
       link.download = `${brandProduct.downloadPrefix}-${stack}-${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.${fmt === 'json' ? 'json' : 'md'}`
       document.body.appendChild(link)
@@ -313,7 +337,7 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
 
   if (!bundle) return null
 
-  const { generated, summary, docker, containers, services, events } = bundle
+  const { generated, summary, containers, services, events } = bundle
 
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
@@ -327,13 +351,13 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap', mb: 3 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Tooltip title="Back to Observatory">
-            <IconButton variant="ghost" size="small" onClick={() => router.push(`/${locale}/${brandProduct.slug}/${brandProduct.pages.observatory}`)} sx={{ mr: 1 }}>
-              <ChevronLeft sx={{ fontSize: 20 }} />
+            <IconButton size="small" onClick={() => router.push(`/${locale}/${brandProduct.slug}/${brandProduct.pages.observatory}`)} sx={{ mr: 1 }}>
+              <ChevronLeft style={{ fontSize: 20 }} />
             </IconButton>
           </Tooltip>
           <Box>
             <Typography variant="h4" gutterBottom component="h1" sx={{ fontWeight: 420, letterSpacing: '-0.055em' }}>
-              <MoonStars sx={{ mr: 1, fontSize: 30, verticalAlign: 'middle', color: _mode === 'dark' ? '#c9f36b' : '#6b8f3e' }} />
+              <MoonStars style={{ marginRight: 1, fontSize: 30, verticalAlign: 'middle', color: _mode === 'dark' ? '#c9f36b' : '#6b8f3e' }} />
               {brandProduct.labels.module} {brandProduct.labels.record}
             </Typography>
             <Typography color="text.secondary" variant="body1">
@@ -343,7 +367,7 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
         </Box>
         <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
           <Tooltip title="Copy JSON to clipboard">
-            <Button variant="outlined" startIcon={<CopyIcon fontSize="small" />} onClick={() => handleCopy(JSON.stringify(bundle, null, 2))} disabled={copied !== null}>
+            <Button variant="outlined" startIcon={<span className="tabler-copy" style={{ fontSize: 18 }} />} onClick={() => handleCopy(JSON.stringify(bundle, null, 2))} disabled={copied !== null}>
               {copied ? 'Copied!' : 'Copy JSON'}
             </Button>
           </Tooltip>
@@ -416,7 +440,7 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
             {events && events.length > 0 ? (
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                 {events.map((event, idx) => (
-                  <EventItem key={idx} event={event} index={idx} />
+                  <EventItem key={idx} event={event} />
                 ))}
               </Box>
             ) : (
@@ -457,11 +481,13 @@ export default function RecordPage({ mode }: { mode: SystemMode }) {
   )
 }
 
-function EventItem({ event, index }: { event: Event; index: number }) {
+function EventItem({ event }: { event: Event }) {
   const sev = severityColor(event.severity)
   const isCondition = event.type === 'condition'
   const icon = isCondition ? (event.severity === 'critical' ? '●' : event.severity === 'warning' ? '◐' : '○') : '↻'
-  return (
+
+  
+return (
     <Card variant="outlined" sx={{ borderLeft: `4px solid ${sev.color}` }}>
       <CardContent sx={{ display: 'flex', gap: 2, alignItems: 'flex-start', py: 1.5 }}>
         <Box sx={{ width: 32, textAlign: 'center', flexShrink: 0, fontSize: 16, color: sev.color }}>
@@ -512,7 +538,9 @@ function ContainersList({ containers }: { containers: Container[] }) {
 
 function ContainerAccordion({ container }: { container: Container }) {
   const colors = stateColor(container.state)
-  return (
+
+  
+return (
     <Accordion sx={{ border: '1px solid', borderColor: 'var(--line)', '&:before': { display: 'none' } }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, py: 1, minHeight: 48 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1, minWidth: 0 }}>
@@ -558,7 +586,7 @@ function ContainerAccordion({ container }: { container: Container }) {
           <DetailRow label="CPU" value={container.metricsAvailable ? formatPercent(container.cpuPercent) : '—'} />
           <DetailRow label="Memory" value={container.metricsAvailable ? `${formatBytes(container.memoryUsedBytes)} / ${formatBytes(container.memoryLimitBytes)} (${formatPercent(container.memoryPercent)})` : '—'} />
           <DetailRow label="Network RX/TX" value={container.metricsAvailable ? `${formatBytes(container.networkRxBytes)} / ${formatBytes(container.networkTxBytes)}` : '—'} />
-          <DetailRow label="Ports" value={container.ports?.map((p, i) => (p.publicPort ? `${p.publicPort}:${p.privatePort}/${p.protocol}` : `${p.privatePort}/${p.protocol}`)).join(', ') || '—'} />
+          <DetailRow label="Ports" value={container.ports?.map(p => (p.publicPort ? `${p.publicPort}:${p.privatePort}/${p.protocol}` : `${p.privatePort}/${p.protocol}`)).join(', ') || '—'} />
           <DetailRow label="Compose" value={container.composeProject ? `${container.composeProject} · ${container.composeService || '—'}` : container.serviceName ? `${container.serviceName} · slot ${container.taskSlot || '—'}` : '—'} />
           {container.error && <DetailRow label="Error" value={container.error} />}
         </Box>
@@ -579,7 +607,9 @@ function ServicesList({ services }: { services: Service[] }) {
 
 function ServiceAccordion({ service }: { service: Service }) {
   const colors = stateColor(service.state)
-  return (
+
+  
+return (
     <Accordion sx={{ border: '1px solid', borderColor: 'var(--line)', '&:before': { display: 'none' } }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, py: 1, minHeight: 48 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1, minWidth: 0 }}>
@@ -607,7 +637,7 @@ function ServiceAccordion({ service }: { service: Service }) {
           <DetailRow label="Replicas" value={`${service.runningReplicas ?? 0}/${service.desiredReplicas ?? 0}`} />
           <DetailRow label="CPU" value={service.cpuPercent.toFixed(1) + '%'} />
           <DetailRow label="Memory" value={formatBytes(service.memoryUsedBytes)} />
-          <DetailRow label="Ports" value={service.ports?.map((p, i) => (p.publicPort ? `${p.publicPort}:${p.privatePort}/${p.protocol}` : `${p.privatePort}/${p.protocol}`)).join(', ') || '—'} />
+          <DetailRow label="Ports" value={service.ports?.map(p => (p.publicPort ? `${p.publicPort}:${p.privatePort}/${p.protocol}` : `${p.privatePort}/${p.protocol}`)).join(', ') || '—'} />
           <DetailRow label="Created" value={relativeTime(service.createdAt)} />
           <DetailRow label="Updated" value={relativeTime(service.updatedAt)} />
         </Box>

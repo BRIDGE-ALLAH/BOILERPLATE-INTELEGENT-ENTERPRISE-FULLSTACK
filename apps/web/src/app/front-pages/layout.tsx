@@ -9,7 +9,6 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 import type { ChildrenType } from '@core/types'
 
 // Context Imports
-import { IntersectionProvider } from '@/contexts/intersectionContext'
 
 // Component Imports
 import Providers from '@components/Providers'
@@ -20,6 +19,9 @@ import ScrollToTop from '@core/components/scroll-to-top'
 // Util Imports
 import { getSystemMode } from '@core/utils/serverHelpers'
 import { getBranding } from '@repo/constants'
+
+
+import { IntersectionProvider } from '@/contexts/intersectionContext'
 
 // Style Imports
 import '@/app/globals.css'

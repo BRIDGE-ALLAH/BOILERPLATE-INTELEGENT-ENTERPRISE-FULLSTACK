@@ -30,7 +30,7 @@ import classnames from 'classnames'
 
 // Type Imports
 import type { SystemMode } from '@core/types'
-import type { Locale } from '@/configs/i18n'
+
 
 // Component Imports
 import Logo from '@components/layout/shared/Logo'
@@ -42,6 +42,8 @@ import themeConfig from '@configs/themeConfig'
 // Hook Imports
 import { useImageVariant } from '@core/hooks/useImageVariant'
 import { useSettings } from '@core/hooks/useSettings'
+
+import type { Locale } from '@/configs/i18n'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'

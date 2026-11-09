@@ -8,10 +8,11 @@ import CardContent from '@mui/material/CardContent'
 import classnames from 'classnames'
 
 // Type Import
+import CustomAvatar from '@core/components/mui/Avatar'
+
 import type { CardStatsVerticalProps } from '@/types/pages/widgetTypes'
 
 // Component Import
-import CustomAvatar from '@core/components/mui/Avatar'
 
 const CardStatsVertical = (props: CardStatsVerticalProps) => {
   // Props

@@ -18,6 +18,8 @@ import Picker from '@emoji-mart/react'
 import data from '@emoji-mart/data'
 
 // Type Imports
+import CustomIconButton from '@core/components/mui/IconButton'
+
 import type { ContactType } from '@/types/apps/chatTypes'
 import type { AppDispatch } from '@/redux-store'
 
@@ -25,7 +27,6 @@ import type { AppDispatch } from '@/redux-store'
 import { sendMsg } from '@/redux-store/slices/chat'
 
 // Component Imports
-import CustomIconButton from '@core/components/mui/IconButton'
 
 type Props = {
   dispatch: AppDispatch

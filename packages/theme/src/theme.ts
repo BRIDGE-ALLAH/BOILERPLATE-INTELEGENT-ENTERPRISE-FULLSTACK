@@ -1,9 +1,9 @@
  // Main theme configuration combining all design tokens
  
- import { brandColors, cssVariables } from './colors.js';
- import { typography } from './typography.js';
- import { spacing } from './spacing.js';
- import { breakpoints, containerWidths } from './breakpoints.js';
+ import { brandColors, cssVariables } from './colors';
+ import { typography } from './typography';
+ import { spacing } from './spacing';
+ import { breakpoints, containerWidths } from './breakpoints';
  
  export const theme = {
    colors: brandColors,
@@ -53,10 +53,9 @@
      slow: '300ms ease-in-out',
    },
  };
- 
- // Default export for theme
+
  export default theme;
- 
+
  // Helper to get theme value by path
  export const getThemeValue = (path: string): unknown => {
    return path.split('.').reduce((obj: any, key) => obj?.[key], theme);

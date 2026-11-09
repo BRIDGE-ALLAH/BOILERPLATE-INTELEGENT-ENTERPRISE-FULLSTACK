@@ -19,12 +19,14 @@ import { Title, Description } from '@radix-ui/react-dialog'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
+import useVerticalNav from '@menu/hooks/useVerticalNav'
+
+import { useSettings } from '@core/hooks/useSettings'
+
 import DefaultSuggestions from './DefaultSuggestions'
 import NoResult from './NoResult'
 
 // Hook Imports
-import useVerticalNav from '@menu/hooks/useVerticalNav'
-import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'

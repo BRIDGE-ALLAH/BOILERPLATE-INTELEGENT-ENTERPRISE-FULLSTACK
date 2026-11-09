@@ -23,6 +23,7 @@ import CustomAvatar from '@core/components/mui/Avatar'
 
 // Styles Imports
 import frontCommonStyles from '@views/front-pages/styles.module.css'
+
 import styles from './styles.module.css'
 
 const pricingPlans = [

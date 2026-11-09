@@ -5,12 +5,11 @@ import { useParams } from 'next/navigation'
 import { useTheme } from '@mui/material/styles'
 
 // Type Imports
-import type { getDictionary } from '@/utils/getDictionary'
 import type { VerticalMenuContextProps } from '@menu/components/vertical-menu/Menu'
 
 // Component Imports
 import HorizontalNav, { Menu, SubMenu, MenuItem } from '@menu/horizontal-menu'
-import VerticalNavContent from './VerticalNavContent'
+
 import CustomChip from '@core/components/mui/Chip'
 
 // import { GenerateHorizontalMenu } from '@components/GenerateMenu'
@@ -28,6 +27,9 @@ import menuRootStyles from '@core/styles/horizontal/menuRootStyles'
 import verticalNavigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
 import verticalMenuItemStyles from '@core/styles/vertical/menuItemStyles'
 import verticalMenuSectionStyles from '@core/styles/vertical/menuSectionStyles'
+
+import VerticalNavContent from './VerticalNavContent'
+import type { getDictionary } from '@/utils/getDictionary'
 
 // Menu Data Imports
 // import menuData from '@/data/navigation/horizontalMenuData'

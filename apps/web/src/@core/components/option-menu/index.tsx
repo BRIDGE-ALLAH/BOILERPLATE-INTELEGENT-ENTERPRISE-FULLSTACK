@@ -23,10 +23,11 @@ import Divider from '@mui/material/Divider'
 import classnames from 'classnames'
 
 // Type Imports
+import { useSettings } from '@core/hooks/useSettings'
+
 import type { OptionsMenuType, OptionType, OptionMenuItemType } from './types'
 
 // Hook Imports
-import { useSettings } from '@core/hooks/useSettings'
 
 const IconButtonWrapper = (props: Pick<OptionsMenuType, 'tooltipProps'> & { children: ReactElement }) => {
   // Props

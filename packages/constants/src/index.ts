@@ -22,11 +22,9 @@
 //   - createSuccessResponse, createErrorResponse: @repo/utils
 //   - ApiResponse, ApiError, PaginatedResponse: @repo/types
 
-export * from "./app.js";
-export * from "./api.js";
-export * from "./http.js";
-export * from "./storage.js";
-export * from "./branding.js";
-export * from "./features.js";
-export * from "./pagination.ts";
-export * from "./validation.ts";
+export * from "./app";
+export * from "./api";
+export * from "./http";
+export * from "./storage";
+export * from "./branding";
+export * from "./features";

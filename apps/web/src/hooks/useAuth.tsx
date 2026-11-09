@@ -1,5 +1,7 @@
 // @app - Authentication hook for React components
-import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { useState, useEffect, useCallback, createContext, useContext } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@app/components/ui/use-toast';
 
@@ -45,7 +47,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // Refresh user from API
   const refreshUser = useCallback(async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/me`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/me`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -54,13 +56,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (response.ok) {
         const data = await response.json();
+
         if (data.success && data.data) {
           setState({
             user: data.data,
             isLoading: false,
             isAuthenticated: true,
           });
-          return;
+          
+return;
         }
       }
 
@@ -78,7 +82,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setState(prev => ({ ...prev, isLoading: true }));
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -121,7 +125,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setState(prev => ({ ...prev, isLoading: true }));
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/signup`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
@@ -165,7 +169,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     try {
       if (token) {
-        await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/logout`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/logout`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -183,12 +187,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const initAuth = async () => {
       const token = localStorage.getItem('token');
+
       if (token) {
         await refreshUser();
       } else {
         setState(prev => ({ ...prev, isLoading: false }));
       }
     };
+
     initAuth();
   }, [refreshUser]);
 
@@ -202,10 +208,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
 // Hook to use auth context
 export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
+
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
-  return context;
+
+  
+return context;
 }
 
 // HOC for protected routes

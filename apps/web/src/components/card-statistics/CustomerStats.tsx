@@ -5,10 +5,11 @@ import Chip from '@mui/material/Chip'
 import Typography from '@mui/material/Typography'
 
 // Type Imports
+import CustomAvatar from '@core/components/mui/Avatar'
+
 import type { CardStatsCustomerStatsProps } from '@/types/pages/widgetTypes'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
 
 const CustomerStats = (props: CardStatsCustomerStatsProps) => {
   // Props

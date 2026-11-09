@@ -10,12 +10,13 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Tooltip from '@mui/material/Tooltip'
 
 // Type Imports
-import type { ProjectsTabType } from '@/types/pages/profileTypes'
 
 // Component Imports
 import OptionMenu from '@core/components/option-menu'
 import CustomAvatar from '@core/components/mui/Avatar'
 import Link from '@components/Link'
+
+import type { ProjectsTabType } from '@/types/pages/profileTypes'
 
 const Projects = ({ data }: { data?: ProjectsTabType[] }) => {
   return (

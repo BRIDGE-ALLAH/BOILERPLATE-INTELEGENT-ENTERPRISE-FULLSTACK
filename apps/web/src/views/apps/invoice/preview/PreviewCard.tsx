@@ -6,13 +6,14 @@ import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
 
 // Type Imports
-import type { InvoiceType } from '@/types/apps/invoiceTypes'
 
 // Component Imports
 import Logo from '@components/layout/shared/Logo'
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
+
+import type { InvoiceType } from '@/types/apps/invoiceTypes'
 import './print.css'
 
 // Vars

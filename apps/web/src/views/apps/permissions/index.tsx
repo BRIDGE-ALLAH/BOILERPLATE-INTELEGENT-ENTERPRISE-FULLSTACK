@@ -35,7 +35,7 @@ import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
 import type { ThemeColor } from '@core/types'
-import type { PermissionRowType } from '@/types/apps/permissionTypes'
+
 
 // Component Imports
 import PermissionDialog from '@components/dialogs/permission-dialog'
@@ -45,6 +45,8 @@ import TablePaginationComponent from '@components/TablePaginationComponent'
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
+
+import type { PermissionRowType } from '@/types/apps/permissionTypes'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {

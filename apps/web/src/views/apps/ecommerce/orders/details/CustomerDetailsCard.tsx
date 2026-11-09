@@ -7,12 +7,14 @@ import type { TypographyProps } from '@mui/material/Typography'
 
 // Type Imports
 import type { ThemeColor } from '@core/types'
-import type { OrderType } from '@/types/apps/ecommerceTypes'
+
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 import EditUserInfo from '@components/dialogs/edit-user-info'
 import OpenDialogOnElementClick from '@components/dialogs/OpenDialogOnElementClick'
+
+import type { OrderType } from '@/types/apps/ecommerceTypes'
 
 // Util Imports
 import { getInitials } from '@/utils/getInitials'

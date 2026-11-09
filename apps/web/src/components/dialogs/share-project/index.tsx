@@ -20,13 +20,14 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 
 // Component Imports
-import DialogCloseButton from '../DialogCloseButton'
 import CustomAutocomplete from '@core/components/mui/Autocomplete'
 import CustomTextField from '@core/components/mui/TextField'
 import CustomAvatar from '@core/components/mui/Avatar'
 
 // Config Imports
 import themeConfig from '@configs/themeConfig'
+
+import DialogCloseButton from '../DialogCloseButton'
 
 type ShareProjectProps = {
   open: boolean

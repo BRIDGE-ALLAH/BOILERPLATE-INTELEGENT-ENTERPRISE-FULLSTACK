@@ -13,10 +13,11 @@ import MenuItem from '@mui/material/MenuItem'
 import Divider from '@mui/material/Divider'
 
 // Style Imports
+import CustomTextField from '@core/components/mui/TextField'
+
 import ConfirmationDialog from '../confirmation-dialog'
 
 //Component Imports
-import CustomTextField from '@core/components/mui/TextField'
 import DialogCloseButton from '../DialogCloseButton'
 
 type UpgradePlanProps = {

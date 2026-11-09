@@ -7,10 +7,11 @@ import Typography from '@mui/material/Typography'
 import classnames from 'classnames'
 
 // Types Imports
+import CustomAvatar from '@core/components/mui/Avatar'
+
 import type { CardStatsHorizontalProps } from '@/types/pages/widgetTypes'
 
 // Components Imports
-import CustomAvatar from '@core/components/mui/Avatar'
 
 const CardStatHorizontal = (props: CardStatsHorizontalProps) => {
   // Props

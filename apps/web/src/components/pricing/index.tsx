@@ -14,11 +14,12 @@ import { useTheme } from '@mui/material/styles'
 import classnames from 'classnames'
 
 // Type Imports
+import DirectionalIcon from '@components/DirectionalIcon'
+
 import type { PricingPlanType } from '@/types/pages/pricingTypes'
 
 // Component Imports
 import PlanDetails from './PlanDetails'
-import DirectionalIcon from '@components/DirectionalIcon'
 
 const Pricing = ({ data }: { data?: PricingPlanType[] }) => {
   // States

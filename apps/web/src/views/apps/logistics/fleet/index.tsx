@@ -13,14 +13,17 @@ import classNames from 'classnames'
 
 //Components Imports
 import CustomIconButton from '@core/components/mui/IconButton'
+
+import { useSettings } from '@core/hooks/useSettings'
+
+import { commonLayoutClasses } from '@layouts/utils/layoutClasses'
+
 import FleetSidebar from './FleetSidebar'
 import FleetMap from './FleetMap'
 
 // Hook Imports
-import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
-import { commonLayoutClasses } from '@layouts/utils/layoutClasses'
 
 export type viewStateType = {
   longitude: number

@@ -10,7 +10,6 @@ import Chip from '@mui/material/Chip'
 import classnames from 'classnames'
 
 // Hook Imports
-import { useIntersection } from '@/hooks/useIntersection'
 
 // SVG Imports
 import Paper from '@assets/svg/front-pages/landing-page/Paper'
@@ -22,6 +21,8 @@ import Document from '@assets/svg/front-pages/landing-page/Document'
 
 // Styles Imports
 import frontCommonStyles from '@views/front-pages/styles.module.css'
+
+import { useIntersection } from '@/hooks/useIntersection'
 
 // Data
 const feature = [

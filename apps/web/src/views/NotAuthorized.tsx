@@ -15,10 +15,12 @@ import classnames from 'classnames'
 
 // Type Imports
 import type { SystemMode } from '@core/types'
+
+import { useImageVariant } from '@core/hooks/useImageVariant'
+
 import type { Locale } from '@/configs/i18n'
 
 // Hook Imports
-import { useImageVariant } from '@core/hooks/useImageVariant'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'

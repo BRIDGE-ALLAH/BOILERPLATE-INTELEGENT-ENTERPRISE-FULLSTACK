@@ -18,6 +18,9 @@ import classnames from 'classnames'
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
+
+import StepperWrapper from '@core/styles/stepper'
+
 import StepPersonalDetails from './StepPersonalDetails'
 import StepPropertyDetails from './StepPropertyDetails'
 import StepPropertyFeatures from './StepPropertyFeatures'
@@ -25,7 +28,6 @@ import StepPropertyArea from './StepPropertyArea'
 import StepPriceDetails from './StepPriceDetails'
 
 // Styled Component Imports
-import StepperWrapper from '@core/styles/stepper'
 
 // Vars
 const steps = [

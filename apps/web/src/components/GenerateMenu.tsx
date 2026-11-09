@@ -9,6 +9,13 @@ import type { ChipProps } from '@mui/material/Chip'
 
 // Type Imports
 import type { Locale } from '@configs/i18n'
+
+
+// Component Imports
+import { SubMenu as HorizontalSubMenu, MenuItem as HorizontalMenuItem } from '@menu/horizontal-menu'
+import { SubMenu as VerticalSubMenu, MenuItem as VerticalMenuItem, MenuSection } from '@menu/vertical-menu'
+import CustomChip from '@core/components/mui/Chip'
+
 import type {
   VerticalMenuDataType,
   VerticalSectionDataType,
@@ -18,11 +25,6 @@ import type {
   HorizontalSubMenuDataType,
   HorizontalMenuItemDataType
 } from '@/types/menuTypes'
-
-// Component Imports
-import { SubMenu as HorizontalSubMenu, MenuItem as HorizontalMenuItem } from '@menu/horizontal-menu'
-import { SubMenu as VerticalSubMenu, MenuItem as VerticalMenuItem, MenuSection } from '@menu/vertical-menu'
-import CustomChip from '@core/components/mui/Chip'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'

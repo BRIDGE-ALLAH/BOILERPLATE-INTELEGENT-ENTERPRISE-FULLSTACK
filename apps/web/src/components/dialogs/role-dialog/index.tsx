@@ -15,11 +15,12 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 
 // Component Imports
-import DialogCloseButton from '../DialogCloseButton'
 import CustomTextField from '@core/components/mui/TextField'
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
+
+import DialogCloseButton from '../DialogCloseButton'
 
 type RoleDialogProps = {
   open: boolean

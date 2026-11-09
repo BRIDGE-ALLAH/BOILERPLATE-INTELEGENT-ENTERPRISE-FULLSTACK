@@ -148,7 +148,7 @@ export function getBrand(): BrandConfig {
 
 // Deep merge utility
 function deepMerge<T extends Record<string, any>>(target: T, source: Partial<T>): T {
-  const result = { ...target };
+  const result: Record<string, any> = { ...target };
   for (const key of Object.keys(source)) {
     const sourceValue = source[key];
     if (sourceValue === undefined) continue;
@@ -158,7 +158,7 @@ function deepMerge<T extends Record<string, any>>(target: T, source: Partial<T>)
       result[key] = sourceValue;
     }
   }
-  return result;
+  return result as T;
 }
 
 export const BRAND_KEYS = {

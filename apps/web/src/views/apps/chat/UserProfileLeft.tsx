@@ -23,6 +23,10 @@ import Button from '@mui/material/Button'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Type Imports
+import { statusObj } from '@views/apps/chat/SidebarLeft'
+
+import CustomTextField from '@core/components/mui/TextField'
+
 import type { AppDispatch } from '@/redux-store'
 import type { ProfileUserType, StatusType } from '@/types/apps/chatTypes'
 
@@ -31,8 +35,6 @@ import { setUserStatus } from '@/redux-store/slices/chat'
 
 // Component Imports
 import AvatarWithBadge from './AvatarWithBadge'
-import { statusObj } from '@views/apps/chat/SidebarLeft'
-import CustomTextField from '@core/components/mui/TextField'
 
 type Props = {
   userSidebar: boolean
@@ -68,7 +70,7 @@ const UserProfileLeft = (props: Props) => {
   }
 
   const handleUserStatus = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setUserStatus({ status: e.target.value as StatusType }))
+    dispatch(setUserStatus({ id: '1', status: e.target.value as StatusType }))
   }
 
   return profileUserData ? (

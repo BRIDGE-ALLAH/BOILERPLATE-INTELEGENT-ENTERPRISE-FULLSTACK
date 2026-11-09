@@ -20,6 +20,10 @@
    return str.slice(0, length) + '...';
  };
  
+ export const ensurePrefix = (str: string, prefix: string): string => {
+   return str.startsWith(prefix) ? str : prefix + str;
+ };
+
  export const slugify = (str: string): string => {
    return str
      .toLowerCase()

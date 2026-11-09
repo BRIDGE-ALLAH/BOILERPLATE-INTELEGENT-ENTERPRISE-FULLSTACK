@@ -1,4 +1,12 @@
- import { PaginationParams, PaginatedResponse } from '@repo/types';
+ import { PaginationParams } from '@repo/types';
+
+export type PaginatedResponse<T> = {
+  items: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+};
  
  export const getPaginationParams = (
    query: Record<string, unknown>,

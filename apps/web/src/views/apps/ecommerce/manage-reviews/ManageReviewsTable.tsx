@@ -37,7 +37,6 @@ import type { ColumnDef, FilterFn } from '@tanstack/react-table'
 import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
-import type { ReviewType } from '@/types/apps/ecommerceTypes'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -47,10 +46,12 @@ import CustomTextField from '@core/components/mui/TextField'
 import TablePaginationComponent from '@components/TablePaginationComponent'
 
 // Util Imports
+import tableStyles from '@core/styles/table.module.css'
+
 import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
-import tableStyles from '@core/styles/table.module.css'
+import type { ReviewType } from '@/types/apps/ecommerceTypes'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {

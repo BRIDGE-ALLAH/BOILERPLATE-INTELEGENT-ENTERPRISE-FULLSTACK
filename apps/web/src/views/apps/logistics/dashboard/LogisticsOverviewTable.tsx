@@ -36,7 +36,7 @@ import type { RankingInfo } from '@tanstack/match-sorter-utils'
 // Type Imports
 import type { ThemeColor } from '@core/types'
 import type { Locale } from '@configs/i18n'
-import type { Vehicle } from '@/types/apps/logisticsTypes'
+
 
 // Components Imports
 import CustomAvatar from '@core/components/mui/Avatar'
@@ -44,10 +44,12 @@ import OptionMenu from '@core/components/option-menu'
 import TablePaginationComponent from '@components/TablePaginationComponent'
 
 // Util Imports
+import tableStyles from '@core/styles/table.module.css'
+
 import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
-import tableStyles from '@core/styles/table.module.css'
+import type { Vehicle } from '@/types/apps/logisticsTypes'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {

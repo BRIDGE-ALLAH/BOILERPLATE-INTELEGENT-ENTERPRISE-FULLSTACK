@@ -28,7 +28,6 @@ import type { Column, Table, ColumnFiltersState, FilterFn, ColumnDef } from '@ta
 import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
-import type { DataType } from './data'
 
 // Component Imports
 import TablePaginationComponent from '@components/TablePaginationComponent'
@@ -39,6 +38,8 @@ import ChevronRight from '@menu/svg/ChevronRight'
 
 // Style Imports
 import styles from '@core/styles/table.module.css'
+
+import type { DataType } from './data'
 
 // Data Imports
 import defaultData from './data'

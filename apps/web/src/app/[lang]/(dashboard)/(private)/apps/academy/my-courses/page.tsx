@@ -1,8 +1,9 @@
 // Component Imports
+import { getServerMode } from '@core/utils/serverHelpers'
+
 import AcademyMyCourse from '@/views/apps/academy/my-courses'
 
 // Server Action Imports
-import { getServerMode } from '@core/utils/serverHelpers'
 
 // Data Imports
 import { getAcademyData } from '@/app/server/actions'

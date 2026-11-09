@@ -13,6 +13,10 @@ import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 
 // Type Imports
+import { useSettings } from '@core/hooks/useSettings'
+
+import { commonLayoutClasses } from '@layouts/utils/layoutClasses'
+
 import type { RootState } from '@/redux-store'
 
 // Slice Imports
@@ -23,10 +27,8 @@ import SidebarLeft from './SidebarLeft'
 import ChatContent from './ChatContent'
 
 // Hook Imports
-import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
-import { commonLayoutClasses } from '@layouts/utils/layoutClasses'
 
 const ChatWrapper = () => {
   // States
@@ -45,8 +47,8 @@ const ChatWrapper = () => {
   const isBelowSmScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
 
   // Get active user’s data
-  const activeUser = (id: number) => {
-    dispatch(getActiveUserData(id))
+  const activeUser = () => {
+    dispatch(getActiveUserData())
   }
 
   // Focus on message input when active user changes

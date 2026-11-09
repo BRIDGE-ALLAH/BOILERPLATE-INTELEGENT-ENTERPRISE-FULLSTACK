@@ -20,16 +20,17 @@ import { useForm, Controller } from 'react-hook-form'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Type Imports
+import CustomTextField from '@core/components/mui/TextField'
+
 import type { AddEventSidebarType, AddEventType } from '@/types/apps/calendarTypes'
 
 // Component Imports
-import CustomTextField from '@core/components/mui/TextField'
 
 // Styled Component Imports
 import AppReactDatepicker from '@/libs/styles/AppReactDatepicker'
 
 // Slice Imports
-import { addEvent, deleteEvent, updateEvent, selectedEvent, filterEvents } from '@/redux-store/slices/calendar'
+import { addEvent, deleteEvent, updateEvent, setSelectedEvent as setSelectedEventAction, filterEvents } from '@/redux-store/slices/calendar'
 
 interface PickerProps {
   label?: string
@@ -121,7 +122,7 @@ const AddEventSidebar = (props: AddEventSidebarType) => {
   const handleSidebarClose = () => {
     setValues(defaultState)
     clearErrors()
-    dispatch(selectedEvent(null))
+    dispatch(setSelectedEventAction(null))
     handleAddEventSidebarToggle()
   }
 

@@ -1,17 +1,12 @@
 // @app - Reusable form hook with centralized valibot schemas
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
+
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@app/components/ui/use-toast';
-import {
-  register,
-  submit,
-  formState,
-  Validate,
-} from 'react-hook-form/lib/hooks/useForm';
-import { z } from 'zod'; // optional: for backward compatibility
+import type { UseFormReturn } from 'react-hook-form';
 
-import { validateSchema, validateBody, ValidationError } from '@repo/validation';
+import { validateSchema } from '@repo/validation';
 
 // Types for the hook
 export type FormFieldState = {
@@ -46,7 +41,7 @@ export type UseFormWithSchemaReturn<T extends object> = {
   handleBlur: (e: React.FocusEvent) => void;
   handleSubmit: (e: React.SubmitEvent) => void;
   reset: (values?: Partial<T>) => void;
-  register: typeof register;
+  register: UseFormReturn<T>['register'];
   validate: (value: any, name: string) => boolean;
 };
 
@@ -69,12 +64,10 @@ export const useFormWithSchema = <T extends object>({
 
   const {
     register,
-    handleSubmit,
-    formState: rfFormState,
     setValue,
     reset,
   } = useForm<T>({
-    defaultValues,
+    defaultValues: defaultValues as any,
     mode: 'onBlur',
   });
 
@@ -109,9 +102,10 @@ export const useFormWithSchema = <T extends object>({
     } catch (error: any) {
       setIsSubmitting(false);
 
-      if (error instanceof ValidationError) {
+      if (error && (error as any).details) {
         // Format validation errors from valibot
         const formattedErrors: FormErrors = {};
+
         Object.keys(error.details).forEach((key) => {
           formattedErrors[key] = error.details[key] as string;
         });
@@ -123,6 +117,7 @@ export const useFormWithSchema = <T extends object>({
       } else {
         // Generic error
         const errorMsg = error.message || 'Something went wrong';
+
         setFormErrors({ _form: errorMsg });
 
         if (onError) {
@@ -142,15 +137,21 @@ export const useFormWithSchema = <T extends object>({
     values: register as T,
     errors: formErrors,
     isSubmitting,
-    handleChange: ({ target }: React.ChangeEvent) => {
-      const { name, value } = target;
-      setValue(name, value as any);
+    handleChange: (e: React.ChangeEvent) => {
+      const { name, value } = e.target as HTMLInputElement;
+
+      setValue(name as any, value as any);
     },
-    handleBlur,
+    handleBlur: (e: React.FocusEvent) => {
+      const { name, value } = e.target as HTMLInputElement;
+
+      setValue(name as any, value as any);
+    },
+
     handleSubmit: onSubmitHandler,
     reset,
     register,
-    validate: (value: any, name: string) => {
+    validate: () => {
       // Quick validation for onBlur events
       return true; // Validation handled on submit
     },
@@ -163,17 +164,17 @@ export const FormInput = ({
   label,
   type = 'text',
   placeholder,
-  required,
   ...rest
 }: {
   name: string;
   label: string;
   type?: string;
   placeholder?: string;
-  required?: boolean;
   rest?: any;
 }) => {
-  const { handleChange, handleBlur, errors } = useFormWithSchema({ schema: {} });
+  const { handleChange } = useFormWithSchema({ schema: {}, defaultValues: {} as any, onSubmit: async () => {} });
+  const handleBlur = handleChange;
+  const errors: Record<string, string> = {};
 
   return (
     <div className="space-y-1">
@@ -206,8 +207,6 @@ export const FormSelect = ({
   label,
   options,
   placeholder = 'Select...',
-  required,
-  value,
   onChange,
   ...rest
 }: {
@@ -215,12 +214,11 @@ export const FormSelect = ({
   label: string;
   options: Array<{ value: any; label: string }>;
   placeholder?: string;
-  required?: boolean;
-  value?: any;
   onChange?: (value: any) => void;
   rest?: any;
 }) => {
-  const { handleChange: handleFormChange } = useFormWithSchema({ schema: {} });
+  const { handleChange: handleFormChange } = useFormWithSchema({ schema: {}, defaultValues: {} as any, onSubmit: async () => {} });
+  const errors: Record<string, string> = {};
 
   return (
     <div className="space-y-1">
@@ -235,12 +233,13 @@ export const FormSelect = ({
         `}
         onChange={(e) => {
           const selected = e.target.options[e.target.selectedIndex].value;
+
           onChange?.(selected);
           handleFormChange(e);
         }}
         {...rest}
       >
-        <option value={null}>{placeholder}</option>
+        <option value="" disabled>{placeholder}</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

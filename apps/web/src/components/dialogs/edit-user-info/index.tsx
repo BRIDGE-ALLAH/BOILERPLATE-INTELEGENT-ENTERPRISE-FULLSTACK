@@ -17,8 +17,9 @@ import Switch from '@mui/material/Switch'
 import { FormControlLabel } from '@mui/material'
 
 // Component Imports
-import DialogCloseButton from '../DialogCloseButton'
 import CustomTextField from '@core/components/mui/TextField'
+
+import DialogCloseButton from '../DialogCloseButton'
 
 type EditUserInfoData = {
   firstName?: string

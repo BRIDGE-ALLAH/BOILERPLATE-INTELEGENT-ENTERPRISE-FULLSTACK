@@ -63,7 +63,7 @@ const KanbanBoard = () => {
             columns={columns}
             setColumns={setColumns}
             currentTask={currentTask}
-            tasks={column.taskIds.map(taskId => kanbanStore.tasks.find(task => task.id === taskId))}
+            tasks={column.taskIds.map((taskId: number) => kanbanStore.tasks.find((task) => task.id === taskId))}
           />
         ))}
       </div>

@@ -1,3 +1,3 @@
- export * from './user.js';
- export * from './api.js';
- export * from './common.js';
+export * from './user';
+export * from './api';
+export * from './common';

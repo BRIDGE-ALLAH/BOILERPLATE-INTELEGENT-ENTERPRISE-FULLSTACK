@@ -4,10 +4,11 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 
 // Types Imports
+import CustomAvatar from '@core/components/mui/Avatar'
+
 import type { CardStatsSquareProps } from '@/types/pages/widgetTypes'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
 
 const CardStatsSquare = (props: CardStatsSquareProps) => {
   // Props

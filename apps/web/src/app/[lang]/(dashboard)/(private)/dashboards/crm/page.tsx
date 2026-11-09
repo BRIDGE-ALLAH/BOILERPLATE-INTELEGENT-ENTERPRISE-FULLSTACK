@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 // Component Imports
 import DistributedBarChartOrder from '@views/dashboards/crm/DistributedBarChartOrder'
 import LineAreaYearlySalesChart from '@views/dashboards/crm/LineAreaYearlySalesChart'
-import CardStatVertical from '@/components/card-statistics/Vertical'
+
 import BarChartRevenueGrowth from '@views/dashboards/crm/BarChartRevenueGrowth'
 import EarningReportsWithTabs from '@views/dashboards/crm/EarningReportsWithTabs'
 import RadarSalesChart from '@views/dashboards/crm/RadarSalesChart'
@@ -16,6 +16,8 @@ import ActivityTimeline from '@views/dashboards/crm/ActivityTimeline'
 
 // Server Action Imports
 import { getServerMode } from '@core/utils/serverHelpers'
+
+import CardStatVertical from '@/components/card-statistics/Vertical'
 
 const DashboardCRM = async () => {
   // Vars

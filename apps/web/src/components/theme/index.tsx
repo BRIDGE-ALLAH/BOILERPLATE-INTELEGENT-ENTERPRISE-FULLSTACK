@@ -19,7 +19,6 @@ import stylisRTLPlugin from 'stylis-plugin-rtl'
 import type { ChildrenType, Direction, SystemMode } from '@core/types'
 
 // Component Imports
-import ModeChanger from './ModeChanger'
 
 // Config Imports
 import themeConfig from '@configs/themeConfig'
@@ -29,6 +28,8 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // Core Theme Imports
 import defaultCoreTheme from '@core/theme'
+
+import ModeChanger from './ModeChanger'
 
 type Props = ChildrenType & {
   direction: Direction

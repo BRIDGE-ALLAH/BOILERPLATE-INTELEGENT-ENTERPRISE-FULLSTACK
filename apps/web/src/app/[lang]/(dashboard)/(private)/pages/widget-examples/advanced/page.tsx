@@ -20,10 +20,12 @@ import PopularInstructors from '@views/pages/widget-examples/advanced/PopularIns
 import LastTransaction from '@views/pages/widget-examples/advanced/LastTransaction'
 import ActivityTimeline from '@views/pages/widget-examples/advanced/ActivityTimeline'
 import WebsiteAnalyticsSlider from '@views/pages/widget-examples/advanced/WebsiteAnalyticsSlider'
+
+import { getServerMode } from '@core/utils/serverHelpers'
+
 import Congratulations from '@/views/pages/widget-examples/advanced/Congratulations'
 
 // Server Action Imports
-import { getServerMode } from '@core/utils/serverHelpers'
 
 const Advanced = async () => {
   // Vars

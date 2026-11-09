@@ -9,6 +9,8 @@ import { authController } from './modules/auth/auth.controller.js';
 import { setupErrorHandling, registerAuthPlugin, correlationIdMiddleware } from './core/middleware';
 import { logger } from './core/logging';
 import { initObservability } from './core/observability';
+import { rateLimitPlugin } from '@repo/ubme-core/src/rate-limit';
+import { securityHeadersPlugin } from '@repo/ubme-core/src/security-headers';
 
 initObservability();
 
@@ -24,6 +26,12 @@ setupErrorHandling(app);
 // Apply correlation ID middleware for request tracking
 app.use(correlationIdMiddleware());
 
+// Apply rate limiting
+await app.register(rateLimitPlugin);
+
+// Apply security headers
+await app.register(securityHeadersPlugin);
+
 // Plugins
 await app.register(fastifyCors, corsConfig);
 await app.register(fastifySwagger, swaggerConfig);
@@ -36,12 +44,3 @@ await registerAuthPlugin(app);
 await app.register(healthController, { prefix: API_PREFIX });
 await app.register(usersController, { prefix: API_PREFIX });
 await app.register(authController, { prefix: API_PREFIX });
-
-try {
-  await app.listen({ port: env.PORT, host: env.HOST });
-  console.log(`🚀 API running at http://${env.HOST}:${env.PORT}`);
-  console.log(`📚 Docs at http://localhost:${env.PORT}/docs`);
-} catch (err) {
-  app.log.error(err);
-  process.exit(1);
-}

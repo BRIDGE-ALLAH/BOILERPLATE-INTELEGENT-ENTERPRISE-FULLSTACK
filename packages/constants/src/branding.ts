@@ -10,5 +10,6 @@ export {
   loadBrandFromEnv,
   BRAND_KEYS,
 } from '@repo/brand';
+export * from '@repo/brand';
 
 export type { BrandConfig as BrandingConfig } from '@repo/brand';

@@ -11,10 +11,11 @@ import Button from '@mui/material/Button'
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
 // Type Imports
+import styles from '@core/styles/table.module.css'
+
 import type { DataType } from './data'
 
 // Style Imports
-import styles from '@core/styles/table.module.css'
 
 // Data Imports
 import defaultData from './data'

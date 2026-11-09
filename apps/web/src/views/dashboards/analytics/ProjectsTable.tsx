@@ -32,16 +32,18 @@ import type { ColumnDef, FilterFn } from '@tanstack/react-table'
 import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
-import type { ProjectTableRowType } from '@/types/pages/profileTypes'
 
 // Component Imports
 import OptionMenu from '@core/components/option-menu'
 import CustomAvatar from '@core/components/mui/Avatar'
 import CustomTextField from '@core/components/mui/TextField'
+
+import tableStyles from '@core/styles/table.module.css'
+
 import TablePaginationComponent from '@/components/TablePaginationComponent'
 
 // Style Imports
-import tableStyles from '@core/styles/table.module.css'
+import type { ProjectTableRowType } from '@/types/pages/profileTypes'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {

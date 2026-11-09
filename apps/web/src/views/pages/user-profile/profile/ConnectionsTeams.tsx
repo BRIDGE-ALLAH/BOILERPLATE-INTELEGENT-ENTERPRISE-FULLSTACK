@@ -8,13 +8,14 @@ import Grid from '@mui/material/Grid'
 import Chip from '@mui/material/Chip'
 
 // Type Imports
-import type { ProfileTeamsTechType, ProfileConnectionsType } from '@/types/pages/profileTypes'
 
 // Component Imports
 import OptionMenu from '@core/components/option-menu'
 import CustomAvatar from '@core/components/mui/Avatar'
 import CustomIconButton from '@core/components/mui/IconButton'
 import Link from '@components/Link'
+
+import type { ProfileTeamsTechType, ProfileConnectionsType } from '@/types/pages/profileTypes'
 
 type Props = {
   teamsTech?: ProfileTeamsTechType[]

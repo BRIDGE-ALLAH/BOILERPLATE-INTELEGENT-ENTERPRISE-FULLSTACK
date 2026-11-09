@@ -10,7 +10,7 @@ function getDevJWTSecret(): string {
 const envSchema = z.object({
   // Server
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-  PORT: z.string().transform((val) => parseInt(val, 10)).default('3000'),
+  PORT: z.coerce.number().default(3000),
   HOST: z.string().default('0.0.0.0'),
 
   // API
@@ -19,7 +19,7 @@ const envSchema = z.object({
 
   // CORS
   CORS_ORIGIN: z.string().default('http://localhost:3000'),
-  CORS_CREDENTIALS: z.string().transform((val) => val === 'true').default('true'),
+  CORS_CREDENTIALS: z.coerce.boolean().default(true),
 
   // Logging
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
@@ -43,28 +43,31 @@ const envSchema = z.object({
   NEXT_PUBLIC_CONTACT_EMAIL: z.string().email().optional(),
   NEXT_PUBLIC_COMPANY_NAME: z.string().optional(),
   NEXT_PUBLIC_COPYRIGHT: z.string().optional(),
+  NEXT_PUBLIC_LOGO_LIGHT: z.string().optional(),
+  NEXT_PUBLIC_LOGO_DARK: z.string().optional(),
+  NEXT_PUBLIC_FAVICON: z.string().optional(),
 
   // Observability
   SENTRY_DSN: z.string().url().optional(),
   SENTRY_ENVIRONMENT: z.string().default('development'),
 
   // Rate limiting
-  RATE_LIMIT_IP: z.string().transform((val) => parseInt(val, 10)).default('100'),
-  RATE_LIMIT_AUTH: z.string().transform((val) => parseInt(val, 10)).default('10'),
-  RATE_LIMIT_UPLOAD: z.string().transform((val) => parseInt(val, 10)).default('5'),
+  RATE_LIMIT_IP: z.coerce.number().default(100),
+  RATE_LIMIT_AUTH: z.coerce.number().default(10),
+  RATE_LIMIT_UPLOAD: z.coerce.number().default(5),
 
   // Docker compose
   POSTGRES_DB: z.string().default('moonwitness'),
   POSTGRES_USER: z.string().default('moonwitness'),
   POSTGRES_PASSWORD: z.string().default('moonwitness'),
-  POSTGRES_PORT: z.string().transform((val) => parseInt(val, 10)).default('5433'),
+  POSTGRES_PORT: z.coerce.number().default(5433),
 
-  REDIS_PORT: z.string().transform((val) => parseInt(val, 10)).default('6379'),
-  REDIS_COMMANDER_PORT: z.string().transform((val) => parseInt(val, 10)).default('8081'),
+  REDIS_PORT: z.coerce.number().default(6379),
+  REDIS_COMMANDER_PORT: z.string().transform((val) => parseInt(val, 10)).default(8081),
 
   PGADMIN_EMAIL: z.string().email().default('admin@moonwitness.dev'),
   PGADMIN_PASSWORD: z.string().default('admin123'),
-  PGADMIN_PORT: z.string().transform((val) => parseInt(val, 10)).default('5050'),
+  PGADMIN_PORT: z.coerce.number().default(5050),
 });
 
 // Parse and validate environment

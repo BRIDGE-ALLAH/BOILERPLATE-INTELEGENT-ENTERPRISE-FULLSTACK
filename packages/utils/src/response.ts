@@ -16,7 +16,7 @@
    code: string,
    message: string,
    details?: Record<string, unknown>,
- ): ApiResponse => ({
+ ): ApiResponse<unknown> => ({
    success: false,
    error: {
      code,

@@ -7,12 +7,13 @@ import { useState } from 'react'
 import Grid from '@mui/material/Grid'
 
 // Type Imports
-import type { FaqType } from '@/types/pages/faqTypes'
 
 // Component Imports
 import FaqHeader from '@views/pages/faq/FaqHeader'
 import Faqs from '@views/pages/faq/Faqs'
 import FaqFooter from '@views/pages/faq/FaqFooter'
+
+import type { FaqType } from '@/types/pages/faqTypes'
 
 const FAQ = ({ data }: { data?: FaqType[] }) => {
   // States

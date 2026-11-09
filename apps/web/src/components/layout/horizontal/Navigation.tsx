@@ -3,10 +3,8 @@ import styled from '@emotion/styled'
 import classnames from 'classnames'
 
 // Type Imports
-import type { getDictionary } from '@/utils/getDictionary'
 
 // Component Imports
-import HorizontalMenu from './HorizontalMenu'
 
 // Config Imports
 import themeConfig from '@configs/themeConfig'
@@ -17,6 +15,9 @@ import useHorizontalNav from '@menu/hooks/useHorizontalNav'
 
 // Util Imports
 import { horizontalLayoutClasses } from '@layouts/utils/layoutClasses'
+
+import HorizontalMenu from './HorizontalMenu'
+import type { getDictionary } from '@/utils/getDictionary'
 
 type StyledDivProps = {
   isContentCompact: boolean

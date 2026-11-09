@@ -20,7 +20,7 @@ import classnames from 'classnames'
 
 // Type Imports
 import type { CustomInputHorizontalData } from '@core/components/custom-inputs/types'
-import type { PricingPlanType } from '@/types/pages/pricingTypes'
+
 
 // Component Imports
 import CustomInputHorizontal from '@core/components/custom-inputs/Horizontal'
@@ -32,6 +32,8 @@ import CustomTextField from '@core/components/mui/TextField'
 
 // Styles Imports
 import frontCommonStyles from '@views/front-pages/styles.module.css'
+
+import type { PricingPlanType } from '@/types/pages/pricingTypes'
 
 // Data
 const cardData: CustomInputHorizontalData[] = [

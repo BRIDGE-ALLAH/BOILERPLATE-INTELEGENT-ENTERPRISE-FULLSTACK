@@ -12,10 +12,11 @@ import classnames from 'classnames'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Type Imports
+import CustomAvatar from '@core/components/mui/Avatar'
+
 import type { ChatType, ChatDataType, UserChatType, ProfileUserType } from '@/types/apps/chatTypes'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
 
 // Util Imports
 import { getInitials } from '@/utils/getInitials'

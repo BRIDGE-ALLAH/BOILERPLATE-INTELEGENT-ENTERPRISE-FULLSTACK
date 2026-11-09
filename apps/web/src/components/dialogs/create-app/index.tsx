@@ -18,8 +18,11 @@ import type { StepProps } from '@mui/material/Step'
 import classnames from 'classnames'
 
 // Component Imports
-import Billing from './Billing'
 import CustomAvatar from '@core/components/mui/Avatar'
+
+import StepperWrapper from '@core/styles/stepper'
+
+import Billing from './Billing'
 import Details from './Details'
 import DialogCloseButton from '../DialogCloseButton'
 import Database from './Database'
@@ -27,7 +30,6 @@ import FrameWork from './FrameWork'
 import Submit from './Submit'
 
 // Styled Component Imports
-import StepperWrapper from '@core/styles/stepper'
 
 type CreateAppProps = {
   open: boolean

@@ -40,7 +40,7 @@ import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
 import type { ThemeColor } from '@core/types'
-import type { InvoiceType } from '@/types/apps/invoiceTypes'
+
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
@@ -50,11 +50,13 @@ import TablePaginationComponent from '@components/TablePaginationComponent'
 import CustomTextField from '@core/components/mui/TextField'
 
 // Util Imports
+import tableStyles from '@core/styles/table.module.css'
+
 import { getInitials } from '@/utils/getInitials'
 import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
-import tableStyles from '@core/styles/table.module.css'
+import type { InvoiceType } from '@/types/apps/invoiceTypes'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {

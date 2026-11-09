@@ -11,11 +11,10 @@ import styled from '@emotion/styled'
 import type { VerticalNavContextProps } from '@menu/contexts/verticalNavContext'
 
 // Component Imports
-import BrandMark from '@repo/brand'
+import { getBrand } from '@repo/brand'
 
 // Config Imports
 import themeConfig from '@configs/themeConfig'
-import { getBrand } from '@repo/brand'
 
 // Hook Imports
 import useVerticalNav from '@menu/hooks/useVerticalNav'
@@ -78,7 +77,7 @@ const Logo = ({ color }: { color?: CSSProperties['color'] }) => {
       {logoSrc ? (
         <img src={logoSrc} alt={branding.appName} className='h-6' />
       ) : (
-        <BrandMark className='text-2xl text-primary' />
+        <span className='text-2xl text-primary' />
       )}
       <LogoText
         color={color}

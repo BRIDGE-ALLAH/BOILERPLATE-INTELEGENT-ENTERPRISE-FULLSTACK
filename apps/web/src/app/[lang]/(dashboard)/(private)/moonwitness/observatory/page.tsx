@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
+
 import { useParams, useRouter } from 'next/navigation'
+
 import { brandProduct } from '@repo/brand'
 
 import Alert from '@mui/material/Alert'
@@ -10,10 +12,14 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
 import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
+
+import RecordList from '@/components/dashboard/record/RecordList'
+import { ServiceCard } from '@/components/dashboard/service/ServiceCard'
+import ContainersTable from '@/components/dashboard/record/ContainersTable'
+import EmptyState from '@/components/dashboard/empty/EmptyState'
 
 type Port = {
   privatePort: number
@@ -136,58 +142,37 @@ function formatBytes(bytes: number): string {
   const units = ['B', 'KiB', 'MiB', 'GiB', 'TiB']
   const exponent = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1)
   const amount = bytes / 1024 ** exponent
-  return `${amount.toFixed(amount >= 10 || exponent === 0 ? 0 : 1)} ${units[exponent]}`
+
+  
+return `${amount.toFixed(amount >= 10 || exponent === 0 ? 0 : 1)} ${units[exponent]}`
 }
 
 function formatPercent(value: number): string {
   return Number.isFinite(value) ? `${value.toFixed(1)}%` : '—'
 }
 
-function formatUptime(seconds: number): string {
-  const total = Math.max(0, Math.floor(seconds))
-  if (total < 60) return `${total}s`
-  const minutes = Math.floor(total / 60)
-  if (minutes < 60) return `${minutes}m ${total % 60}s`
-  const hours = Math.floor(minutes / 60)
-  if (hours < 24) return `${hours}h ${minutes % 60}m`
-  return `${Math.floor(hours / 24)}d ${hours % 24}h`
-}
-
 function relativeTime(value: string): string {
   const seconds = Math.floor((Date.now() - new Date(value).getTime()) / 1000)
+
   if (!Number.isFinite(seconds) || seconds < 1) return 'just now'
   if (seconds < 60) return `${seconds}s ago`
   const minutes = Math.floor(seconds / 60)
+
   if (minutes < 60) return `${minutes}m ago`
   const hours = Math.floor(minutes / 60)
-  if (hours < 24) return `${hours}h ago`
-  return `${Math.floor(hours / 24)}d ago`
-}
 
-function workloadColor(state: string): { bg: string; color: string } {
-  const normalized = state.toLowerCase()
-  if (normalized === 'running' || normalized === 'healthy') return { bg: '#c9f36b22', color: '#c9f36b' }
-  if (normalized === 'degraded' || normalized === 'restarting' || normalized === 'starting') {
-    return { bg: '#ffc66d22', color: '#ffc66d' }
-  }
-  if (normalized === 'unhealthy' || normalized === 'dead' || normalized === 'exited' || normalized === 'failed') {
-    return { bg: '#ff7b7222', color: '#ff7b72' }
-  }
-  return { bg: '#8fd8ff22', color: '#8fd8ff' }
+  if (hours < 24) return `${hours}h ago`
+  
+return `${Math.floor(hours / 24)}d ago`
 }
 
 function severityColor(severity: string): string {
   if (severity === 'critical') return '#ff7b72'
   if (severity === 'warning') return '#ffc66d'
-  return '#8fd8ff'
+  
+return '#8fd8ff'
 }
 
-function formatPorts(ports: Port[] | undefined): string {
-  if (!ports?.length) return '—'
-  return ports
-    .map(port => (port.publicPort ? `${port.publicPort}:${port.privatePort}/${port.protocol}` : `${port.privatePort}/${port.protocol}`))
-    .join(', ')
-}
 
 export default function ObservatoryPage() {
   const router = useRouter()
@@ -209,8 +194,10 @@ export default function ObservatoryPage() {
           cache: 'no-store',
           headers: { Accept: 'application/json' },
         })
+
         if (!response.ok) throw new Error(`Controller returned HTTP ${response.status}`)
         const data = (await response.json()) as Snapshot
+
         if (!mounted) return
         setSnapshot(data)
         if (!data.services?.length) setActiveTab(data.containers?.length ? 'containers' : 'record')
@@ -222,9 +209,12 @@ export default function ObservatoryPage() {
     }
 
     loadOverview()
+
     if (!('EventSource' in window)) {
       setStreamStatus('error')
-      return () => {
+
+      
+return () => {
         mounted = false
       }
     }
@@ -232,6 +222,7 @@ export default function ObservatoryPage() {
     stream = new EventSource(`${CONTROLLER_URL}/api/v1/stream`)
     stream.addEventListener('snapshot', (event: MessageEvent<string>) => {
       if (!mounted) return
+
       try {
         setSnapshot(JSON.parse(event.data) as Snapshot)
         setStreamStatus('live')
@@ -295,7 +286,7 @@ export default function ObservatoryPage() {
         <MetricCard label='Services' value={summary?.services ?? 0} meta={`${summary?.servicesRunning ?? 0} running, ${summary?.servicesDegraded ?? 0} degraded`} icon='tabler-server-2' />
         <MetricCard label='Containers' value={summary?.containers ?? 0} meta={`${summary?.containersRunning ?? 0} running, ${summary?.containersStopped ?? 0} stopped`} icon='tabler-box' />
         <MetricCard label='CPU load' value={summary ? formatPercent(summary.cpuPercent) : '—'} meta={docker?.cpus ? `${((summary?.cpuPercent || 0) / docker.cpus).toFixed(1)}% per core` : 'Collecting data'} icon='tabler-cpu' progress={summary?.cpuPercent} progressMax={docker?.cpus ? docker.cpus * 100 : 100} />
-        <MetricCard label='Memory' value={summary ? formatPercent(summary.memoryPercent) : formatBytes(summary?.memoryUsedBytes || 0)} meta={`${formatBytes(summary?.memoryUsedBytes || 0)} / ${formatBytes(summary?.memoryLimitBytes || 0)}`} icon='tabler-server' progress={summary?.memoryPercent} progressMax={100} />
+        <MetricCard label='Memory' value={summary ? formatPercent(summary.memoryPercent) : formatBytes(0)} meta={`${formatBytes(0)} / ${formatBytes(0)}`} icon='tabler-server' progress={summary?.memoryPercent || 0} progressMax={100} />
         <MetricCard label='Attention' value={(summary?.criticalAlerts ?? 0) + (summary?.warnings ?? 0)} meta={`${summary?.criticalAlerts ?? 0} critical, ${summary?.warnings ?? 0} warnings`} icon='tabler-alert-triangle' />
         <MetricCard label='Collection' value={snapshot ? `${snapshot.collectionMs}ms` : '—'} meta='Docker Engine API' icon='tabler-refresh' />
       </Box>
@@ -312,7 +303,7 @@ export default function ObservatoryPage() {
               </Box>
               <Button size='small' onClick={() => setActiveTab('record')}>View record</Button>
             </Box>
-            <RecordList events={recentEvents} onOpen={openRecord} />
+            <RecordList events={recentEvents} />
           </CardContent>
         </Card>
       )}
@@ -352,7 +343,7 @@ export default function ObservatoryPage() {
 
           {activeTab === 'record' && (
             recentEvents.length > 0
-              ? <RecordList events={recentEvents} onOpen={openRecord} />
+              ? <RecordList events={recentEvents} />
               : <EmptyState title='No record yet' description='Events appear here when the witness detects a change or a failing condition.' />
           )}
         </CardContent>
@@ -374,7 +365,7 @@ function Meta({ label, value, color }: { label: string; value: string; color?: s
   return (
     <Box>
       <Typography variant='caption' color='text.secondary' sx={{ fontFamily: 'monospace', textTransform: 'uppercase' }}>{label}</Typography>
-      <Typography variant='body2' sxenge={{ fontWeight: 500, color: color || 'inherit', fontFamily: 'monospace' }}>{value}</Typography>
+      <Typography variant='body2' sx={{ fontWeight: 500, color: color || 'inherit', fontFamily: 'monospace' }}>{value}</Typography>
     </Box>
   )
 }

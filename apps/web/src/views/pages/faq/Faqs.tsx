@@ -16,11 +16,12 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import classnames from 'classnames'
 
 // Type Imports
-import type { FaqType } from '@/types/pages/faqTypes'
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 import CustomTabList from '@core/components/mui/TabList'
+
+import type { FaqType } from '@/types/pages/faqTypes'
 
 type props = {
   faqData?: FaqType[]

@@ -19,7 +19,7 @@ import type { CalendarOptions } from '@fullcalendar/core'
 import type { AddEventType, CalendarColors, CalendarType } from '@/types/apps/calendarTypes'
 
 // Slice Imports
-import { filterEvents, selectedEvent, updateEvent } from '@/redux-store/slices/calendar'
+import { filterEvents, setSelectedEvent as setSelectedEventAction, updateEvent } from '@/redux-store/slices/calendar'
 
 type CalenderProps = {
   calendarStore: CalendarType
@@ -128,7 +128,7 @@ const Calendar = (props: CalenderProps) => {
     eventClick({ event: clickedEvent, jsEvent }: any) {
       jsEvent.preventDefault()
 
-      dispatch(selectedEvent(clickedEvent))
+      dispatch(setSelectedEventAction(clickedEvent))
       handleAddEventSidebarToggle()
 
       if (clickedEvent.url) {
@@ -158,7 +158,7 @@ const Calendar = (props: CalenderProps) => {
       ev.end = info.date
       ev.allDay = true
 
-      dispatch(selectedEvent(ev))
+      dispatch(setSelectedEventAction(ev))
       handleAddEventSidebarToggle()
     },
 

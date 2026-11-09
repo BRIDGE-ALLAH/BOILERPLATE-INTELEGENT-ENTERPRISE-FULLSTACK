@@ -23,17 +23,18 @@ import { TextAlign } from '@tiptap/extension-text-align'
 import type { Editor } from '@tiptap/react'
 
 // Types Imports
-import type { AppDispatch } from '@/redux-store'
-import type { Email } from '@/types/apps/emailTypes'
 
 // Slice Imports
-import { moveEmailsToFolder, navigateEmails, toggleLabel } from '@/redux-store/slices/email'
 
 // Components Imports
 import CustomIconButton from '@core/components/mui/IconButton'
 import CustomChip from '@core/components/mui/Chip'
 import OptionMenu from '@core/components/option-menu'
 import DirectionalIcon from '@components/DirectionalIcon'
+
+import { moveEmailsToFolder, navigateEmails, toggleLabel } from '@/redux-store/slices/email'
+import type { Email } from '@/types/apps/emailTypes'
+import type { AppDispatch } from '@/redux-store'
 import MailCard from './MailCard'
 
 // Styles Imports
@@ -249,19 +250,19 @@ const MailDetails = (props: Props) => {
 
   // Move all selected emails to spam
   const handleMoveAllToSpam = () => {
-    dispatch(moveEmailsToFolder({ emailIds: [currentEmail?.id], folder: 'spam' }))
+    dispatch(moveEmailsToFolder({ emailIds: [currentEmail?.id as number], folder: 'spam' }))
     setDrawerOpen(false)
   }
 
   // Move all selected emails to inbox
   const handleMoveAllToInbox = () => {
-    dispatch(moveEmailsToFolder({ emailIds: [currentEmail?.id], folder: 'inbox' }))
+    dispatch(moveEmailsToFolder({ emailIds: [currentEmail?.id as number], folder: 'inbox' }))
     setDrawerOpen(false)
   }
 
   // Handle click on label option from menu list
   const handleLabelClick = (value: string) => {
-    dispatch(toggleLabel({ emailIds: [currentEmail?.id], label: value }))
+    dispatch(toggleLabel({ emailIds: [currentEmail?.id as number], label: value }))
     label === value && setDrawerOpen(false)
   }
 

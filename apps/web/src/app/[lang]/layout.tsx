@@ -14,14 +14,15 @@ import type { Locale } from '@configs/i18n'
 // Component Imports
 
 // HOC Imports
-import TranslationWrapper from '@/hocs/TranslationWrapper'
 
 // Config Imports
-import { i18n, resolveLocale } from '@configs/i18n'
+import { resolveLocale, i18n } from '@configs/i18n'
 import { getBranding } from '@repo/constants'
 
 // Util Imports
 import { getSystemMode } from '@core/utils/serverHelpers'
+
+import TranslationWrapper from '@/hocs/TranslationWrapper'
 
 // Style Imports
 import '@/app/globals.css'

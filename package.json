@@ -1,39 +1,63 @@
- {
-   "name": "moonwitness",
-   "version": "1.0.0",
-   "private": true,
-   "workspaces": [
-     "apps/*",
-     "packages/*"
-   ],
-   "scripts": {
-     "dev": "bunx concurrently \"bun run dev:api\" \"bun run dev:web\"",
+{
+  "name": "moonwitness",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bunx concurrently \"bun run dev:api\" \"bun run dev:web\"",
     "dev:api": "cd apps/api && bun run dev",
     "dev:server": "cd apps/server && cargo loco start",
-    "dev:stack": "bunx concurrently \"bun run dev:api\" \"bun run dev:web\" \"bun run dev:server\"",
     "dev:web": "cd apps/web && bun run dev",
+    "dev:all": "bunx concurrently \"bun run dev:api\" \"bun run dev:web\" \"bun run db:up\"",
     "build": "turbo run build",
     "build:api": "cd apps/api && bun run build",
     "build:server": "cd apps/server && cargo build --release",
     "build:web": "cd apps/web && bun run build",
+    "build:all": "turbo run build",
     "start": "turbo run start",
+    "start:api": "cd apps/api && bun run start",
+    "start:web": "cd apps/web && bun run start",
     "lint": "turbo run lint",
-    "lint:server": "cd apps/server && cargo clippy --all-targets -- -D warnings",
+    "lint:api": "cd apps/api && bun run lint",
+    "lint:web": "cd apps/web && bun run lint",
+    "lint:all": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "type-check:all": "turbo run type-check",
     "test": "turbo run test",
-    "test:server": "cd apps/server && cargo test",
-    "db:server": "docker compose -f apps/server/docker-compose.yml up -d",
-    "db:server:down": "docker compose -f apps/server/docker-compose.yml down",
+    "test:api": "cd apps/api && bun run test",
+    "test:web": "cd apps/web && bun run test",
+    "test:all": "turbo run test",
+    "test:coverage": "turbo run test -- --coverage",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:reset": "bun run db:down && bun run db:up",
+    "seed": "cd packages/tests && bun run seed",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
-    "format:server": "cd apps/server && cargo fmt --all",
-    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules apps/*/.next apps/*/dist"
-   },
-   "devDependencies": {
-     "concurrently": "^8.2.2",
-     "turbo": "^1.13.0",
-     "prettier": "^3.2.4",
-     "typescript": "^5.3.3"
-   },
-   "engines": {
-     "bun": ">=1.0.0"
-   }
- }
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules apps/*/.next apps/*/dist",
+    "clean:install": "bun run clean && bun i",
+    "verify": "bun run type-check && bun run lint && bun run test && bun run build",
+    "doctor": "node ./scripts/doctor.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "turbo": "^1.13.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "prettier-plugin-tailwindcss": "^0.5.0"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "packageManager": "bun@1.4.4",
+  "volta": {
+    "node": "20.11.0",
+    "bun": "1.4.4"
+  },
+  "dependencies": {
+    "redis": "^6.3.1"
+  }
+}

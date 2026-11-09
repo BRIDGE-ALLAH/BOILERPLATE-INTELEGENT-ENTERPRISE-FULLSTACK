@@ -11,13 +11,12 @@ import { useParams } from 'next/navigation'
 import { styled, useColorScheme, useTheme } from '@mui/material/styles'
 
 // Type Imports
-import type { getDictionary } from '@/utils/getDictionary'
 import type { Mode } from '@core/types'
 import type { Locale } from '@configs/i18n'
 
 // Component Imports
 import VerticalNav, { NavHeader, NavCollapseIcons } from '@menu/vertical-menu'
-import VerticalMenu from './VerticalMenu'
+
 import Logo from '@components/layout/shared/Logo'
 
 // Hook Imports
@@ -25,10 +24,13 @@ import useVerticalNav from '@menu/hooks/useVerticalNav'
 import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
+import navigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
+
 import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
-import navigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
+import VerticalMenu from './VerticalMenu'
+import type { getDictionary } from '@/utils/getDictionary'
 
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>

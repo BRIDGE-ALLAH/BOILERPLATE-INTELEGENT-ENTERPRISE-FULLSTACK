@@ -35,7 +35,6 @@ import type { ColumnDef, FilterFn } from '@tanstack/react-table'
 import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
-import type { Course } from '@/types/apps/academyTypes'
 import type { Locale } from '@configs/i18n'
 
 // Components Imports
@@ -44,10 +43,12 @@ import TablePaginationComponent from '@components/TablePaginationComponent'
 import CustomTextField from '@core/components/mui/TextField'
 
 // Util Imports
+import tableStyles from '@core/styles/table.module.css'
+
 import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
-import tableStyles from '@core/styles/table.module.css'
+import type { Course } from '@/types/apps/academyTypes'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {

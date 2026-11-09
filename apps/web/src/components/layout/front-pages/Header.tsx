@@ -22,11 +22,13 @@ import type { Mode } from '@core/types'
 // Component Imports
 import Logo from '@components/layout/shared/Logo'
 import ModeDropdown from '@components/layout/shared/ModeDropdown'
-import FrontMenu from './FrontMenu'
+
 import CustomIconButton from '@core/components/mui/IconButton'
 
 // Util Imports
 import { frontLayoutClasses } from '@layouts/utils/layoutClasses'
+
+import FrontMenu from './FrontMenu'
 
 // Styles Imports
 import styles from './styles.module.css'

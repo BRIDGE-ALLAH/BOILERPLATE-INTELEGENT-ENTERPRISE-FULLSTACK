@@ -1,34 +1,173 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 MOONWITNESS — Enterprise-Intelligent-Fullstack Boilerplate
 
-## Getting Started
+**Modern, production-ready monorepo** for enterprise-grade fullstack applications. Built with Bun, Turborepo, Fastify, Next.js, and a modular `@repo/*` package ecosystem.
 
-First, run the development server:
+> **Status:** 🔴 Phase 0 (Infrastructure & Boilerplate) — Active development
+
+---
+
+## 📖 Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# 1. Clone the repository
+git clone https://github.com/BRIDGE-ALLAH/BOILERPLATE-INTELEGENT-ENTERPRISE-FULLSTACK.git
+cd BOILERPLATE-INTELEGENT-ENTERPRISE-FULLSTACK
+
+# 2. Install dependencies
+bun install
+
+# 3. Configure environment
+cp .env.example .env
+# Edit .env with your values
+
+# 4. Start the full stack
+bun run dev:all
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser to:
+- **API:** `http://localhost:3000/api/v1/health` ✅
+- **Web App:** `http://localhost:3000` ✅
+- **API Docs:** `http://localhost:3000/docs` ✅
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 📁 Repository Structure
 
-## Learn More
+```
+├── apps/
+│   ├── api/          # Fastify REST API (TypeScript)
+│   ├── web/          # Next.js 14+ web application
+│   └── server/       # Rust/Loco server (optional)
+│
+├── packages/
+│   ├── auth/         # JWT, RBAC, Fastify auth plugin
+│   ├── config/       # Environment configuration (Zod-validated)
+│   ├── constants/    # API endpoints, HTTP status codes, error codes
+│   ├── types/        # Shared TypeScript types & interfaces
+│   ├── utils/        # Utility functions (responses, pagination)
+│   ├── validation/   # Zod validation schemas & form utilities
+│   ├── theme/        # MUI theme & design tokens
+│   ├── ui-system/    # Reusable UI components
+│   ├── ubme-core/    # UBME model engine (contracts, registry, fields)
+│   ├── ubme-mikroorm/# MikroORM integration layer
+│   └── ubme-cli/     # CLI for schema & migration management
+│
+├── docs/
+│   └── TODO.md       # Roadmap & action plan
+│
+├── turbo.json        # Turborepo pipeline configuration
+├── package.json      # Monorepo root scripts & settings
+└── bun.lock          # Bun lockfile
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| Command | Description |
+|---------|-------------|
+| `bun run dev:all` | Start API + Web + DB together |
+| `bun run dev:api` | Start API only |
+| `bun run dev:web` | Start Web only |
+| `bun run build` | Build all packages & apps |
+| `bun run start` | Start all built apps |
+| `bun run test` | Run all tests |
+| `bun run test:coverage` | Run tests with coverage |
+| `bun run lint` | Lint all packages & apps |
+| `bun run format` | Format all code |
+| `bun run verify` | Full verification (type-check, lint, test, build) |
+| `bun run db:up` | Start database container |
+| `bun run db:down` | Stop database container |
+| `bun run db:reset` | Reset database container |
+| `bun run clean` | Remove all node_modules & build artifacts |
+| `bun run doctor` | Run health check and diagnostics |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Package Ecosystem
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| Package | Purpose |
+|---------|---------|
+| `@repo/auth` | JWT, RBAC/ABAC middleware, Fastify plugin |
+| `@repo/config` | Zod-validated environment configuration |
+| `@repo/constants` | HTTP status codes, error codes, API endpoints |
+| `@repo/types` | Shared TypeScript types & interfaces |
+| `@repo/utils` | Response formatting, pagination, helpers |
+| `@repo/validation` | Zod validation schemas, form utilities |
+| `@repo/theme` | MUI theme, design tokens, dark mode |
+| `@repo/ui-system` | 30+ MUI/radix components |
+| `@repo/ubme-core` | Model engine contracts (UBME framework) |
+| `@repo/ubme-mikroorm` | MikroORM integration layer |
+
+---
+
+## 🏗️ Architecture Overview
+
+```
+┌─────────────────┐
+│  Web (Next.js)  │
+│  React + MUI    │
+│  TanStack Query │
+└────────┬────────┘
+         │ HTTPS
+         ▼
+┌─────────────────┐
+│  API (Fastify)  │
+│  Auth + RBAC    │
+│  Validation     │
+│  Error Handling │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Packages       │
+│  @repo/* (shared)│
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  DB (PostgreSQL) │
+│  MikroORM + Prisma│
+└─────────────────┘
+```
+
+---
+
+## 🔒 Security
+
+- **Auth:** JWT-based authentication with `Authorization: Bearer <token>`
+- **RBAC:** Role-based access control (`user`, `admin`, `super_admin`)
+- **Validation:** Zod schemas on all API inputs
+- **Headers:** Helmet + CSP + CORS
+- **Rate Limiting:** Per-IP and per-user limits
+
+---
+
+## 🚀 Deployment
+
+```bash
+# Production build
+bun run build:all
+
+# Start production
+bun run start:api
+bun run start:web
+```
+
+---
+
+## 📝 License
+
+MIT © 2026 MoonWitness Dev
+
+---
+
+## 📊 Status
+
+| Metric | Value |
+|--------|-------|
+| Branches | `master` |
+| Packages | 14 |
+| Apps | 2 |
+| Tests | 56 passing |
+| Status | 🔴 Phase 0 active |
