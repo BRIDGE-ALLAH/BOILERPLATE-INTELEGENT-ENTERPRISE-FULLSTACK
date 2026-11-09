@@ -111,4 +111,6 @@ jobs:
       - name: Run build
         env:
           JWT_SECRET: ci-build-secret-do-not-use-in-production
-        run: bun run build:all
+        run: |
+          cd apps/web && npx prisma generate
+          cd .. && bun run build:all
