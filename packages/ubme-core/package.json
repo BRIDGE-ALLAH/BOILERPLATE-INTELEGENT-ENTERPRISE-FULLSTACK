@@ -1,5 +1,5 @@
 {
-  "name": "ubme-core",
+  "name": "@repo/ubme-core",
   "version": "0.1.0",
   "description": "Core contracts, registry, fields, context, recordset, and query AST for UBME",
   "main": "dist/index.js",
