@@ -39,3 +39,14 @@ export {
   filterByTenant,
   createTenantScopedQuery,
 } from './tenancy';
+
+export {
+  DataGovernanceEngine,
+  PIIFieldConfig,
+  DataClassification,
+  RetentionRule,
+  ComplianceConfig,
+  DataSubjectRequest,
+  EncryptionConfig,
+  dataGovernance,
+} from './compliance';
