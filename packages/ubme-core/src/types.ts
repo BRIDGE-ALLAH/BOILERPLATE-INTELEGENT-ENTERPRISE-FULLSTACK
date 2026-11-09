@@ -68,9 +68,14 @@ export interface FieldPath {
   readonly segments: string[];
 }
 
+export type Operator =
+  | 'eq' | 'neq' | 'gt' | 'gte' | 'lt' | 'lte'
+  | 'in' | 'nin' | 'contains' | 'startsWith' | 'endsWith'
+  | 'isNull' | 'isNotNull' | 'between';
+
 export interface Predicate {
   readonly field?: FieldPath;
-  readonly operator?: string;
+  readonly operator?: Operator;
   readonly value?: any;
   readonly and?: Predicate[];
   readonly or?: Predicate[];
@@ -81,7 +86,28 @@ export interface Predicate {
   };
 }
 
+export interface QueryOptions {
+  readonly limit?: number;
+  readonly offset?: number;
+  readonly orderBy?: readonly { field: FieldPath; direction: 'asc' | 'desc' }[];
+  readonly projection?: readonly string[];
+  readonly populate?: readonly string[];
+}
+
+export interface DomainQuery {
+  readonly predicate?: Predicate;
+  readonly options?: QueryOptions;
+}
+
 export interface RecordData {
   readonly id: RecordId;
   readonly data: Record<string, any>;
+}
+
+export interface QueryEngine {
+  find<T>(model: string, filter?: Predicate, options?: QueryOptions): Promise<T[]>;
+  findById<T>(model: string, id: string | number): Promise<T | null>;
+  count<T>(model: string, filter?: Predicate): Promise<number>;
+  aggregate<T>(model: string, pipeline: any[]): Promise<T[]>;
+  compilePredicate(predicate: Predicate): Record<string, any>;
 }

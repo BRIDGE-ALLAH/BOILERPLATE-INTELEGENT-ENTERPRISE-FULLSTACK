@@ -42,7 +42,7 @@ describe('PolicyEngine', () => {
   test('checkRecordPermission grants when record rule matches', async () => {
     const rule: RecordRule = {
       model: 'test.model',
-      condition: { field: { segments: ['owner_id'] }, operator: '=', value: 'user-1' },
+      condition: { field: { segments: ['owner_id'] }, operator: 'eq', value: 'user-1' },
       grant: true,
     };
     engine.addRecordRule(rule);

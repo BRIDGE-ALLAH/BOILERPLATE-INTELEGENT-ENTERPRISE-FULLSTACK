@@ -1,4 +1,14 @@
-import { Predicate } from './types';
+import {
+  Predicate,
+  QueryOptions,
+  Operator,
+  FieldPath,
+  createPredicate,
+  and,
+  or,
+  not,
+  exists,
+} from './queryAST';
 
 export interface DomainCompiler {
   compile(predicate: Predicate): any;
@@ -7,10 +17,8 @@ export interface DomainCompiler {
 }
 
 export interface DomainQuery {
-  readonly predicate: Predicate;
-  readonly limit?: number;
-  readonly offset?: number;
-  readonly projection?: readonly string[];
+  readonly predicate?: Predicate;
+  readonly options?: QueryOptions;
 }
 
 export class Engine implements DomainCompiler {
@@ -19,7 +27,7 @@ export class Engine implements DomainCompiler {
   }
 
   validate(predicate: Predicate): void {
-    if (!predicate.field && !predicate.and && !predicate.or && !predicate.not) {
+    if (!predicate.field && !predicate.and && !predicate.or && !predicate.not && !predicate.exists) {
       throw new Error('Invalid predicate: missing field or logical operator');
     }
   }
@@ -28,3 +36,15 @@ export class Engine implements DomainCompiler {
     return predicate;
   }
 }
+
+export {
+  Predicate,
+  QueryOptions,
+  Operator,
+  FieldPath,
+  createPredicate,
+  and,
+  or,
+  not,
+  exists,
+};

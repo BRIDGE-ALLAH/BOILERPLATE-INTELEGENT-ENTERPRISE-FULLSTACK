@@ -25,6 +25,6 @@ describe('MetadataCompiler', () => {
     expect(schema.tableName).toBe('test.model');
     expect(schema.properties).toEqual({});
     expect(schema.indexes).toEqual([]);
-    expect(schema.relations).toEqual([]);
+    expect(schema.relations).toEqual({});
   });
 });
