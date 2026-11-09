@@ -10,3 +10,16 @@ export { Engine as DomainEngine, DomainCompiler, DomainQuery } from './domainEng
 export { Engine as AddonEngine, AddonEngine as AddonEngineInterface, AddonManifest, AddonGraph } from './addonEngine';
 export { Validator, ValidationResult, ValidationError, ValidatorImpl } from './validation';
 export * from './types';
+export {
+  AuditLogger,
+  InMemoryAuditLogger,
+  auditLogger,
+  createAuditMiddleware,
+  createAuditLogEntry,
+  logAudit,
+  AuditAction,
+  AuditSeverity,
+  AuditLogEntry,
+  AuditQuery,
+  RetentionPolicy,
+} from './audit';
