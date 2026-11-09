@@ -17,28 +17,27 @@ export const securityHeadersPlugin: FastifyPluginAsync = async (fastify) => {
 
   // Apply security headers to all responses
   fastify.addHook('onSend', (request, reply, payload) => {
+    const p = payload as Record<string, string>;
     for (const [key, value] of Object.entries(headers)) {
-      payload.headers[key] = value;
+      p[key] = value;
     };
     return payload;
   });
 
   // Additional security middleware
-  fastify.addHook('onRequest', async (request, reply, next) => {
+  fastify.addHook('onRequest', async (request, reply) => {
     // Enforce HTTPS for production
     if (process.env.NODE_ENV === 'production' && !request.url.startsWith('https://')) {
       return reply.redirect(`https://${request.headers.host}${request.url}`);
     }
-    next();
   });
 
   // Additional security headers for API endpoints
   fastify.addHook('onSend', (request, reply, payload) => {
     if (request.url.startsWith('/api/')) {
-      payload.headers['X-Frame-Options'] = 'DENY';
-      payload.headers['X-Content-Type-Options'] = 'nosniff';
+      const p = payload as Record<string, string>;
+      p['X-Frame-Options'] = 'DENY';
+      p['X-Content-Type-Options'] = 'nosniff';
     }
   });
 };
-
-export { securityHeadersPlugin };

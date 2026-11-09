@@ -1,6 +1,6 @@
 // @repo/ubme-core - Rate Limiting & Throttling
 import { FastifyPluginAsync } from 'fastify';
-import { redisClient } from './redis';
+import redisClient from './redis';
 
 export const rateLimitPlugin: FastifyPluginAsync = async (fastify, options) => {
   // Rate limiting configuration
@@ -27,15 +27,16 @@ export const rateLimitPlugin: FastifyPluginAsync = async (fastify, options) => {
 
     // Check if rate limit has been exceeded
     const count = await redisClient.get(cacheKey);
-    if (count >= config.max) {
+    const current = count ? Number(count) : 0;
+    if (current >= config.max) {
       return reply.code(429).send(config.message);
     }
 
     // Increment count with TTL
-    await redisClient.setex(cacheKey, config.timeWindow, (count || 0) + 1);
-    reply.setHeader('RateLimit-Limit', config.max);
-    reply.setHeader('RateLimit-Remaining', config.max - (count || 0) - 1);
-    reply.setHeader('RateLimit-Reset', config.timeWindow);
+    await redisClient.setEx(cacheKey, 60, String(current + 1));
+    reply.header('RateLimit-Limit', config.max);
+    reply.header('RateLimit-Remaining', config.max - current - 1);
+    reply.header('RateLimit-Reset', '60');
   });
 };
 

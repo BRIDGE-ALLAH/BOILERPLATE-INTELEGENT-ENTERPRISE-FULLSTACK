@@ -16,7 +16,7 @@ export class BullMQIntegrationImpl implements BullMQIntegration {
     // Implementation would set up BullMQ worker
   }
 
-  getStatus(jobId: string): Promise<{ status: string; progress: number }> {
+  async getStatus(jobId: string): Promise<{ status: string; progress: number }> {
     return { status: 'not_implemented', progress: 0 };
   }
 }

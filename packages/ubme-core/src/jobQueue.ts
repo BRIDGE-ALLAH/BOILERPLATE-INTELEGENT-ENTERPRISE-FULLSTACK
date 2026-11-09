@@ -59,7 +59,7 @@ export class JobQueueImpl implements JobQueue {
     // Implementation would execute the job
   }
 
-  getStatus(jobId: string): Promise<{ status: string; attempts: number }> {
+  async getStatus(jobId: string): Promise<{ status: string; attempts: number }> {
     const job = this.jobs.get(jobId);
     if (!job) {
       return { status: 'not_found', attempts: 0 };

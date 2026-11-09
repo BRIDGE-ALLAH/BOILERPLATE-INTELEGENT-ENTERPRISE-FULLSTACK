@@ -4,7 +4,7 @@ export interface DataLoader<T, Key = string, Value = T> {
   clear(): void;
 }
 
-export class DataLoaderImpl<T, Key = string, Value = T> implements DataLoader<Key, Value> {
+export class DataLoaderImpl<T, Key = string, Value = T> implements DataLoader<T, Key, Value> {
   private cache: Map<Key, Value> = new Map();
   private loading: Map<Key, Promise<Value>> = new Map();
 
@@ -18,7 +18,7 @@ export class DataLoaderImpl<T, Key = string, Value = T> implements DataLoader<Ke
       return this.loading.get(key)!;
     }
 
-    const promise = this.fetch(key).then((value) => {
+    const promise = this.fetch(key).then((value: Value) => {
       this.cache.set(key, value);
       this.loading.delete(key);
       return value;
@@ -40,7 +40,7 @@ export class DataLoaderImpl<T, Key = string, Value = T> implements DataLoader<Ke
     this.loading.clear();
   }
 
-  protected protectedFetch(key: Key): Promise<Value> {
-    throw new Error('Must implement protectedFetch');
+  protected fetch(key: Key): Promise<Value> {
+    throw new Error('Must implement fetch');
   }
 }

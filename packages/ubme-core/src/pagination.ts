@@ -19,7 +19,7 @@ export class PaginationUtil {
     items: T[],
     page: number = 1,
     limit: number = 10,
-  ): PaginationResult<T> {
+  ): Promise<PaginationResult<T>> {
     const total = items.length;
     const totalPages = Math.ceil(total / limit);
     const start = (page - 1) * limit;

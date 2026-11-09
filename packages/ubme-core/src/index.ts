@@ -1,4 +1,4 @@
-export { ModelRegistry, RegistryState } from './modelRegistry';
+export { ModelRegistry } from './modelRegistry';
 export { ModelRef } from './modelRef';
 export { ExecutionContext, PersistenceContext } from './executionContext';
 export { RecordSet } from './recordSet';
