@@ -8,6 +8,9 @@ import { usersController } from './modules/users/users.controller.js';
 import { authController } from './modules/auth/auth.controller.js';
 import { setupErrorHandling, registerAuthPlugin, correlationIdMiddleware } from './core/middleware';
 import { logger } from './core/logging';
+import { initObservability } from './core/observability';
+
+initObservability();
 
 const fastifyConfig = {
   logger: env.NODE_ENV === 'development',

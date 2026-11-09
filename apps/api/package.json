@@ -1,27 +1,33 @@
- {
-   "name": "api",
-   "version": "1.0.50",
-   "type": "module",
-   "scripts": {
-     "dev": "bun run --watch src/index.ts",
-     "build": "bun build src/index.ts --outdir dist --minify",
-     "start": "bun dist/index.js"
-   },
-   "dependencies": {
-     "fastify": "^4.25.0",
-     "@fastify/cors": "^8.5.0",
-     "@fastify/swagger": "^8.13.0",
-     "@fastify/swagger-ui": "^1.10.0",
-     "@repo/config": "workspace:*",
-     "@repo/types": "workspace:*",
-     "@repo/utils": "workspace:*",
-     "@repo/auth": "workspace:*",
-     "@repo/constants": "workspace:*",
-     "@repo/validation": "workspace:*",
-     "@repo/theme": "workspace:*"
-   },
-   "devDependencies": {
-     "bun-types": "latest"
-   },
-   "module": "src/index.js"
- }
+{
+  "name": "api",
+  "version": "1.0.50",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --minify",
+    "start": "bun dist/index.js"
+  },
+  "dependencies": {
+    "fastify": "^4.25.0",
+    "@fastify/cors": "^8.5.0",
+    "@fastify/swagger": "^8.13.0",
+    "@fastify/swagger-ui": "^1.10.0",
+    "@repo/config": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@repo/auth": "workspace:*",
+    "@repo/constants": "workspace:*",
+    "@repo/validation": "workspace:*",
+    "@repo/theme": "workspace:*",
+    "@opentelemetry/api": "^1.10.0",
+    "@opentelemetry/sdk-node": "^0.301.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.83.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.301.0",
+    "@sentry/node": "^11.11.0",
+    "@sentry/tracing": "^7.120.4"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}

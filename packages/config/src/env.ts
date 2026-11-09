@@ -1,65 +1,88 @@
-// Centralized environment configuration
-
-export const env = {
-  // Server
-  NODE_ENV: process.env.NODE_ENV || 'development',
-  PORT: parseInt(process.env.PORT || '3000'),
-  HOST: process.env.HOST || '0.0.0.0',
-
-  // API
-  API_PREFIX: process.env.API_PREFIX || '/api/v1',
-  API_VERSION: process.env.API_VERSION || 'v1',
-
-  // CORS
-  CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
-  CORS_CREDENTIALS: process.env.CORS_CREDENTIALS === 'true',
-
-  // Logging
-  LOG_LEVEL: process.env.LOG_LEVEL || 'info',
-
-  // Auth
-  JWT_SECRET: process.env.JWT_SECRET || getDevJWTSecret(),
-  JWT_EXPIRATION: process.env.JWT_EXPIRATION || '24h',
-
-  // Database
-  DATABASE_URL: process.env.DATABASE_URL || '',
-
-  // Frontend
-  NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
-  NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME || 'MOONWITNESS',
-
-  // Brand-related env overrides (consumed by @repo/brand)
-  NEXT_PUBLIC_APP_SHORT_NAME: process.env.NEXT_PUBLIC_APP_SHORT_NAME,
-  NEXT_PUBLIC_APP_DESCRIPTION: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
-  NEXT_PUBLIC_LOGO_LIGHT: process.env.NEXT_PUBLIC_LOGO_LIGHT,
-  NEXT_PUBLIC_LOGO_DARK: process.env.NEXT_PUBLIC_LOGO_DARK,
-  NEXT_PUBLIC_FAVICON: process.env.NEXT_PUBLIC_FAVICON,
-  NEXT_PUBLIC_PRIMARY_COLOR: process.env.NEXT_PUBLIC_PRIMARY_COLOR,
-  NEXT_PUBLIC_SECONDARY_COLOR: process.env.NEXT_PUBLIC_SECONDARY_COLOR,
-  NEXT_PUBLIC_DOCS_URL: process.env.NEXT_PUBLIC_DOCS_URL,
-  NEXT_PUBLIC_SUPPORT_URL: process.env.NEXT_PUBLIC_SUPPORT_URL,
-  NEXT_PUBLIC_CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
-  NEXT_PUBLIC_COMPANY_NAME: process.env.NEXT_PUBLIC_COMPANY_NAME,
-  NEXT_PUBLIC_COPYRIGHT: process.env.NEXT_PUBLIC_COPYRIGHT,
-};
+// Centralized environment configuration with Zod validation
+import { z } from 'zod';
 
 // Dev JWT secret generation (never use in production)
-// Uses lazy initialization to avoid top-level require() in ES module context
-let _devJWTSecret: string | null = null;
-
 function getDevJWTSecret(): string {
-  if (!_devJWTSecret) {
-    // Node.js built-in crypto - Bun supports this in ES modules
-    // Fallback to a deterministic but secure-generated secret
-    _devJWTSecret = Math.random().toString(36).substring(2, 34);
-  }
-  return _devJWTSecret;
+  return Math.random().toString(36).substring(2, 34);
 }
 
-// Validate required env vars in production
-// JWT_SECRET is guaranteed set by env.ts runtime guard above
-if (env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
+// Zod schema for environment variables
+const envSchema = z.object({
+  // Server
+  NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+  PORT: z.string().transform((val) => parseInt(val, 10)).default('3000'),
+  HOST: z.string().default('0.0.0.0'),
+
+  // API
+  API_PREFIX: z.string().default('/api/v1'),
+  API_VERSION: z.string().default('v1'),
+
+  // CORS
+  CORS_ORIGIN: z.string().default('http://localhost:3000'),
+  CORS_CREDENTIALS: z.string().transform((val) => val === 'true').default('true'),
+
+  // Logging
+  LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
+
+  // Auth
+  JWT_SECRET: z.string().min(1, 'JWT_SECRET is required').optional(),
+  JWT_EXPIRATION: z.string().default('24h'),
+
+  // Database
+  DATABASE_URL: z.string().url('DATABASE_URL must be a valid URL').optional(),
+
+  // Frontend
+  NEXT_PUBLIC_API_URL: z.string().url().default('http://localhost:3000'),
+  NEXT_PUBLIC_APP_NAME: z.string().default('MOONWITNESS'),
+  NEXT_PUBLIC_APP_SHORT_NAME: z.string().default('MOON'),
+  NEXT_PUBLIC_APP_DESCRIPTION: z.string().default('Enterprise Intelligent Fullstack Boilerplate'),
+  NEXT_PUBLIC_PRIMARY_COLOR: z.string().default('#0ea5e9'),
+  NEXT_PUBLIC_SECONDARY_COLOR: z.string().default('#a855f7'),
+  NEXT_PUBLIC_DOCS_URL: z.string().url().optional(),
+  NEXT_PUBLIC_SUPPORT_URL: z.string().url().optional(),
+  NEXT_PUBLIC_CONTACT_EMAIL: z.string().email().optional(),
+  NEXT_PUBLIC_COMPANY_NAME: z.string().optional(),
+  NEXT_PUBLIC_COPYRIGHT: z.string().optional(),
+
+  // Observability
+  SENTRY_DSN: z.string().url().optional(),
+  SENTRY_ENVIRONMENT: z.string().default('development'),
+
+  // Rate limiting
+  RATE_LIMIT_IP: z.string().transform((val) => parseInt(val, 10)).default('100'),
+  RATE_LIMIT_AUTH: z.string().transform((val) => parseInt(val, 10)).default('10'),
+  RATE_LIMIT_UPLOAD: z.string().transform((val) => parseInt(val, 10)).default('5'),
+
+  // Docker compose
+  POSTGRES_DB: z.string().default('moonwitness'),
+  POSTGRES_USER: z.string().default('moonwitness'),
+  POSTGRES_PASSWORD: z.string().default('moonwitness'),
+  POSTGRES_PORT: z.string().transform((val) => parseInt(val, 10)).default('5433'),
+
+  REDIS_PORT: z.string().transform((val) => parseInt(val, 10)).default('6379'),
+  REDIS_COMMANDER_PORT: z.string().transform((val) => parseInt(val, 10)).default('8081'),
+
+  PGADMIN_EMAIL: z.string().email().default('admin@moonwitness.dev'),
+  PGADMIN_PASSWORD: z.string().default('admin123'),
+  PGADMIN_PORT: z.string().transform((val) => parseInt(val, 10)).default('5050'),
+});
+
+// Parse and validate environment
+const parsedEnv = envSchema.safeParse(process.env);
+
+if (!parsedEnv.success) {
+  const missing = Object.keys(parsedEnv.error.flatten().fieldErrors);
+  throw new Error(
+    `Invalid environment variables: ${missing.join(', ')}. Check .env and .env.example.`
+  );
+}
+
+const env = parsedEnv.data as z.infer<typeof envSchema>;
+
+// Ensure JWT_SECRET is set in production
+if (env.NODE_ENV === 'production' && !env.JWT_SECRET) {
   throw new Error('JWT_SECRET is required in production - set at build time');
 }
 
-export type Environment = typeof env;
+export type Environment = z.infer<typeof envSchema>;
+export { env };

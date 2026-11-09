@@ -1,0 +1,74 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: moonwitness-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-moonwitness}
+      POSTGRES_USER: ${POSTGRES_USER:-moonwitness}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-moonwitness}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-moonwitness} -d ${POSTGRES_DB:-moonwitness}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - moonwitness_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: moonwitness-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - moonwitness_network
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: moonwitness-redis-commander
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "${REDIS_COMMANDER_PORT:-8081}:8081"
+    depends_on:
+      - redis
+    networks:
+      - moonwitness_network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: moonwitness-pgadmin
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:-admin@moonwitness.dev}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:-admin123}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    depends_on:
+      - postgres
+    networks:
+      - moonwitness_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  moonwitness_network:
+    driver: bridge
