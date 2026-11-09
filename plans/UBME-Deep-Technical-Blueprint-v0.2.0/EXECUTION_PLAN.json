@@ -1,0 +1,211 @@
+{
+  "project": "UBME",
+  "title": "Universal Business Model Engine",
+  "version": "0.2.0",
+  "research_snapshot": "2026-11-09",
+  "status": "blueprint_only_not_implemented",
+  "principles": [
+    "MikroORM is persistence foundation; UBME owns business-model semantics.",
+    "Compile model/addon metadata before MikroORM initialization and freeze the registry.",
+    "Use explicit ExecutionContext and per-request/per-job EntityManager forks.",
+    "Use typed domain AST and deny-by-default authorization.",
+    "Review production migrations; never auto-sync production schema.",
+    "Prove Bun SQLite and PostgreSQL compatibility with full adapter contract tests."
+  ],
+  "phases": [
+    {
+      "id": "P0",
+      "name": "Feasibility and architecture lock",
+      "goal": "Prove Bun + MikroORM + SQLite + PostgreSQL support and freeze persistence approach.",
+      "tasks": [
+        "Pin exact Bun and aligned MikroORM package versions in a spike branch.",
+        "Prototype EntitySchema/defineEntity compilation before ORM init.",
+        "Prove bun:sqlite using SqliteDriver + Kysely + kysely-bun-sqlite.",
+        "Prove PostgreSQL using MikroORM PostgreSQL driver and pg under Bun.",
+        "Test relations, Unit of Work, rollback, migrations, concurrency, shutdown.",
+        "Record OS/architecture/package matrix and document blockers."
+      ],
+      "acceptance": [
+        "SQLite contract suite passes under Bun.",
+        "PostgreSQL contract suite passes or an explicit alternative runtime decision is approved.",
+        "Compatibility report includes exact versions and reproducible commands.",
+        "No unverified support claims remain."
+      ]
+    },
+    {
+      "id": "P1",
+      "name": "Core contracts and registry",
+      "goal": "Build deterministic metadata registry without database dependency.",
+      "tasks": [
+        "Define ModelDefinition, FieldDefinition, RelationDefinition, ActionDefinition and PolicyDefinition.",
+        "Implement BUILDING/FROZEN registry states.",
+        "Implement naming, duplicate and relation target validation.",
+        "Implement addon dependency sorting and cycle detection.",
+        "Build immutable metadata snapshot and typed errors."
+      ],
+      "acceptance": [
+        "Registry tests pass without database.",
+        "Invalid and cyclic definitions fail deterministically.",
+        "Frozen registry rejects mutation."
+      ]
+    },
+    {
+      "id": "P2",
+      "name": "Persistence compiler and context",
+      "goal": "Compile basic model metadata and provide isolated persistence contexts.",
+      "tasks": [
+        "Compile scalar UBME fields into MikroORM metadata.",
+        "Implement MikroORM composition root and adapter lifecycle.",
+        "Implement explicit ExecutionContext and EntityManager forks.",
+        "Implement codecs for UUID, Decimal, Date, DateTime, JSON and Boolean.",
+        "Implement scalar CRUD, flush, transaction and rollback."
+      ],
+      "acceptance": [
+        "CRUD works on all supported adapters.",
+        "Concurrent contexts have isolated identity maps.",
+        "Rollback leaves no partial state."
+      ]
+    },
+    {
+      "id": "P3",
+      "name": "Relations and domain query",
+      "goal": "Implement safe relationships and portable query AST.",
+      "tasks": [
+        "Implement ManyToOne, OneToMany, OneToOne and ManyToMany.",
+        "Add explicit association entity support.",
+        "Implement typed domain AST parser and field/operator validation.",
+        "Compile parameterized search predicates.",
+        "Implement count, exists, stable sorting and pagination.",
+        "Add explicit population plans and query complexity limits."
+      ],
+      "acceptance": [
+        "Relation and referential integrity tests pass.",
+        "Invalid user query is rejected before SQL execution.",
+        "Count/search/exists share query-scope enforcement."
+      ]
+    },
+    {
+      "id": "P4",
+      "name": "Security boundary",
+      "goal": "Ensure model, record, field and tenant rules cannot be bypassed by public operations.",
+      "tasks": [
+        "Implement model ACL and named action permissions.",
+        "Implement deny-by-default record grant/deny policy composition.",
+        "Inject tenant/org constraints into every query path.",
+        "Implement field-level read/write and serialization policies.",
+        "Secure aggregates, relation traversal, exports and bulk operations.",
+        "Restrict raw EntityManager and QueryBuilder to adapter internals.",
+        "Add PostgreSQL RLS defense-in-depth where appropriate."
+      ],
+      "acceptance": [
+        "All security threat tests pass.",
+        "Tenant isolation passes on every supported adapter.",
+        "No application path can bypass the UBME policy boundary."
+      ]
+    },
+    {
+      "id": "P5",
+      "name": "RecordSet, actions, validation and events",
+      "goal": "Deliver an Odoo-inspired batch model API and transactional business operations.",
+      "tasks": [
+        "Implement RecordSet browse/search/read/write/unlink/count/exists.",
+        "Implement field/model validation and database constraint mapping.",
+        "Implement action registration, input schemas and transaction policies.",
+        "Implement optimistic version conflict handling.",
+        "Map lifecycle hooks with collection-change tests.",
+        "Implement transactional outbox and idempotent dispatcher contract.",
+        "Add audited system capabilities."
+      ],
+      "acceptance": [
+        "SaleOrder vertical slice confirms/cancels through actions.",
+        "Action failure rolls back domain and outbox rows.",
+        "Bulk APIs cannot skip policies or invariants.",
+        "Concurrent update yields a conflict instead of silent overwrite."
+      ]
+    },
+    {
+      "id": "P6",
+      "name": "Compute engine",
+      "goal": "Implement deterministic virtual and then safely stored computed fields.",
+      "tasks": [
+        "Build compute dependency graph and cycle detection.",
+        "Implement virtual compute for explicit projections.",
+        "Implement same-record scalar dependency recomputation.",
+        "Add relation-aware invalidation only after full mutation matrix is covered.",
+        "Add batched stored compute/backfill jobs.",
+        "Declare search/sort/group support per computed field."
+      ],
+      "acceptance": [
+        "All supported dependency changes recompute correctly.",
+        "Rollback and bulk updates leave no stale stored value.",
+        "Unsupported patterns fail explicitly."
+      ]
+    },
+    {
+      "id": "P7",
+      "name": "Model extension and addons",
+      "goal": "Compose trusted addon metadata deterministically.",
+      "tasks": [
+        "Implement mixins and abstract mapped metadata.",
+        "Implement model extension with collision and override rules.",
+        "Implement delegation/composition metadata.",
+        "Evaluate STI only for concrete use case.",
+        "Implement addon manifests and dependency version checks.",
+        "Implement addon migration/install plan.",
+        "Freeze model registry before ORM init."
+      ],
+      "acceptance": [
+        "Addon graph is deterministic.",
+        "Incompatible field collisions fail.",
+        "Existing table changes require explicit migration/backfill."
+      ]
+    },
+    {
+      "id": "P8",
+      "name": "CLI, migrations and operations",
+      "goal": "Make schema evolution and production operations safe and inspectable.",
+      "tasks": [
+        "Implement model:list, model:describe and addon:graph.",
+        "Implement schema:check and migration diff workflow.",
+        "Implement migration status/apply wrapper.",
+        "Add migration preflight and backup/restore hooks.",
+        "Add structured logs, query metrics, readiness and compatibility report.",
+        "Write deployment and upgrade runbooks."
+      ],
+      "acceptance": [
+        "Previous-release fixtures upgrade successfully.",
+        "Boot fails on incompatible schema.",
+        "Production schema is never automatically synchronized."
+      ]
+    },
+    {
+      "id": "P9",
+      "name": "Hardening and v1 release",
+      "goal": "Validate correctness, security, portability and operational readiness.",
+      "tasks": [
+        "Run performance baselines and inspect query plans.",
+        "Add N+1/query budget and fuzz tests.",
+        "Run load and concurrency tests including SQLite lock contention.",
+        "Test worker retries, idempotency and graceful shutdown.",
+        "Audit exports, dependency graph and persistence bypasses.",
+        "Complete docs, examples, compatibility matrix and release notes."
+      ],
+      "acceptance": [
+        "All v1 gates in BLUEPRINT.md pass.",
+        "Supported runtime/database matrix is published.",
+        "Clean checkout builds and reproduces all tests."
+      ]
+    }
+  ],
+  "first_vertical_slice": [
+    "res.partner",
+    "sale.order",
+    "sale.order.line",
+    "ManyToOne",
+    "OneToMany",
+    "draft-confirmed-cancelled actions",
+    "tenant policy",
+    "virtual totals",
+    "SQLite + PostgreSQL contract tests"
+  ]
+}

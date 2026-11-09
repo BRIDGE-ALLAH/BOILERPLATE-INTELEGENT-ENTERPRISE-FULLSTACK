@@ -1,0 +1,79 @@
+{
+  "project": "UBME",
+  "title": "Universal Business Model Engine — Deep Technical Blueprint",
+  "version": "0.2.0",
+  "research_snapshot": "2026-11-09",
+  "artifact_status": "blueprint_only_not_implemented",
+  "documents": [
+    {
+      "path": "ADDONS.md",
+      "bytes": 3928,
+      "sha256": "5e18992624c3f098d7fe406cee99373b028c4ff3012638925f6be23763ca8090"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 7501,
+      "sha256": "6e93feafd2f521a5ddd0dddab2a9d0adf8baff90cc36867179fe7deca5a6b36c"
+    },
+    {
+      "path": "BLUEPRINT.md",
+      "bytes": 23306,
+      "sha256": "d89bb2f184f6a6c358d424c3974308caae3ce08b5070efe3a97d4d0cbd354eac"
+    },
+    {
+      "path": "DATABASES.md",
+      "bytes": 7844,
+      "sha256": "e686b66df9c239d3d5b5932496b0481b8ed388afa9b12a96cf0011e2520b42a2"
+    },
+    {
+      "path": "DECISIONS.md",
+      "bytes": 4776,
+      "sha256": "ca93875548b724455bb75b75559d9b18ea1d9c1dce4e1e6e8d10c1ccdd56b537"
+    },
+    {
+      "path": "EXECUTION_PLAN.json",
+      "bytes": 9132,
+      "sha256": "0a0c47fdfadebb9b970186dbdb0f3ea1f15cafc218a62265a63ffecd1e361cd5"
+    },
+    {
+      "path": "MIGRATIONS.md",
+      "bytes": 3638,
+      "sha256": "d9d9ea84fdbde3591c0e1e13f6d0d05dd9ff83dd0de11308f65ef1346de6a6af"
+    },
+    {
+      "path": "MODEL_API.md",
+      "bytes": 7430,
+      "sha256": "f4c8191955321cd98b86e134a3a3a7f3d35afa3a3ef5fc34bff73bd1ff059af9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5440,
+      "sha256": "5826841a77182aa4d37f9806b8993f7b17030b7c4b19f0e5b8d5058c95d12749"
+    },
+    {
+      "path": "REFERENCES.md",
+      "bytes": 4592,
+      "sha256": "70002267d1a3970d2b5a9dc8ddadf6738425d88de7a3915e20f5f7377b49a5ca"
+    },
+    {
+      "path": "RISKS.md",
+      "bytes": 3575,
+      "sha256": "7320561511f41ffda06d83bf54d2ad5217afcc664b7cfed3b21fa56770ab8266"
+    },
+    {
+      "path": "ROADMAP.md",
+      "bytes": 7515,
+      "sha256": "d3f214e3ead7c2f1910c4fbb00406ae6b3db1335cdcb0e3a54aebc93b5dea804"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 7443,
+      "sha256": "e8c43c81e7a8255b43a2f1fa4efc0ac23da0e378859b860751ac02b538fb45ce"
+    },
+    {
+      "path": "TESTING.md",
+      "bytes": 4097,
+      "sha256": "1aa8ab3bfd688526214b61f5b8af0dbf5910cb0cc6b571dedf697ef7636c1305"
+    }
+  ]
+}

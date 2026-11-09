@@ -1,0 +1,39 @@
+ {
+   "name": "moonwitness",
+   "version": "1.0.0",
+   "private": true,
+   "workspaces": [
+     "apps/*",
+     "packages/*"
+   ],
+   "scripts": {
+     "dev": "bunx concurrently \"bun run dev:api\" \"bun run dev:web\"",
+    "dev:api": "cd apps/api && bun run dev",
+    "dev:server": "cd apps/server && cargo loco start",
+    "dev:stack": "bunx concurrently \"bun run dev:api\" \"bun run dev:web\" \"bun run dev:server\"",
+    "dev:web": "cd apps/web && bun run dev",
+    "build": "turbo run build",
+    "build:api": "cd apps/api && bun run build",
+    "build:server": "cd apps/server && cargo build --release",
+    "build:web": "cd apps/web && bun run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "lint:server": "cd apps/server && cargo clippy --all-targets -- -D warnings",
+    "test": "turbo run test",
+    "test:server": "cd apps/server && cargo test",
+    "db:server": "docker compose -f apps/server/docker-compose.yml up -d",
+    "db:server:down": "docker compose -f apps/server/docker-compose.yml down",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:server": "cd apps/server && cargo fmt --all",
+    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules apps/*/.next apps/*/dist"
+   },
+   "devDependencies": {
+     "concurrently": "^8.2.2",
+     "turbo": "^1.13.0",
+     "prettier": "^3.2.4",
+     "typescript": "^5.3.3"
+   },
+   "engines": {
+     "bun": ">=1.0.0"
+   }
+ }

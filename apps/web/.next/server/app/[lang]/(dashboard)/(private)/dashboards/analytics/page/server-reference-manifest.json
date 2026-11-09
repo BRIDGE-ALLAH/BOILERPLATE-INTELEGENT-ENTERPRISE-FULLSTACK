@@ -1,0 +1,155 @@
+{
+  "node": {
+    "004f2c49a24287699ad2f991bb99b8314c0af17572": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getAcademyData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getAcademyData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "008f6f140a189777453ef53586ca528c17b56f96e5": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getStatisticsData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getStatisticsData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "0090e3259c752d743f8b7fbfe9f11ac558f9987e24": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getProfileData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getProfileData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "009383c9cf57c19b13b1bf29ade1d4e89760dbf406": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getInvoiceData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getInvoiceData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "009f2be1c0437893dde82922eca9057d02badacd7f": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getUserData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getUserData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "00cd23b0cc80d406cb12b86cfd3771586283ad3053": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getPricingData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getPricingData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "00d80c7c58c26424f9da1ce06b82c4e49cb7ffb2c5": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getLogisticsData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getLogisticsData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "00dec03c493d0a2bc3d6bdef419dbc530cf7cf74f3": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getEcommerceData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getEcommerceData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "00f5cf2d205a4ff81adeae3505f405612e62883a50": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getPermissionsData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getPermissionsData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    },
+    "00f72f1141944e5ab0c9d97d1975c23cee46692ef7": {
+      "workers": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": {
+          "moduleId": 568198,
+          "async": false,
+          "exportedName": "getFaqData",
+          "filename": "apps/web/src/app/server/actions.ts"
+        }
+      },
+      "layer": {
+        "app/[lang]/(dashboard)/(private)/dashboards/analytics/page": "rsc"
+      },
+      "exportedName": "getFaqData",
+      "filename": "apps/web/src/app/server/actions.ts"
+    }
+  },
+  "edge": {}
+}

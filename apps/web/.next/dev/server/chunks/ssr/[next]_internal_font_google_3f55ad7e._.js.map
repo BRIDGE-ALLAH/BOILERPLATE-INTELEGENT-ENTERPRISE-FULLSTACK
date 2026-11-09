@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["turbopack:///[next]/internal/font/google/public_sans_c04fba6f.module.css [app-ssr] (css module)"],"sourcesContent":["__turbopack_context__.v({\n  \"className\": \"public_sans_c04fba6f-module__czALtq__className\",\n});\n"],"names":[],"mappings":"AAAA;AACA;AACA","ignoreList":[0]}},
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["turbopack:///[next]/internal/font/google/public_sans_c04fba6f.js"],"sourcesContent":["import cssModule from \"@vercel/turbopack-next/internal/font/google/cssmodule.module.css?{%22path%22:%22index.ts%22,%22import%22:%22Public_Sans%22,%22arguments%22:[{%22subsets%22:[%22latin%22],%22weight%22:[%22300%22,%22400%22,%22500%22,%22600%22,%22700%22,%22800%22,%22900%22]}],%22variableName%22:%22public_sans%22}\";\nconst fontData = {\n    className: cssModule.className,\n    style: {\n        fontFamily: \"'Public Sans', 'Public Sans Fallback'\",\n        fontStyle: \"normal\",\n\n    },\n};\n\nif (cssModule.variable != null) {\n    fontData.variable = cssModule.variable;\n}\n\nexport default fontData;\n"],"names":[],"mappings":";;;;AAAA;;AACA,MAAM,WAAW;IACb,WAAW,sKAAS,CAAC,SAAS;IAC9B,OAAO;QACH,YAAY;QACZ,WAAW;IAEf;AACJ;AAEA,IAAI,sKAAS,CAAC,QAAQ,IAAI,MAAM;IAC5B,SAAS,QAAQ,GAAG,sKAAS,CAAC,QAAQ;AAC1C;uCAEe","ignoreList":[0]}}]
+}

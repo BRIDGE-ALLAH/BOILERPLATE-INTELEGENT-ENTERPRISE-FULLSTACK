@@ -1,0 +1,11 @@
+[install]
+# Auto-install peer dependencies
+auto-install-peers = true
+
+[runtime]
+# Use loose module resolution
+loose-modules = true
+
+[packageManager]
+# Ensure Bun is the package manager
+version = "1.0"

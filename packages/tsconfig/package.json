@@ -1,0 +1,10 @@
+ {
+   "name": "@repo/tsconfig",
+   "version": "1.0.0",
+   "main": "base.json",
+   "exports": {
+     ".": "./base.json",
+     "./next.js": "./next.json",
+     "./node.js": "./node.json"
+   }
+ }

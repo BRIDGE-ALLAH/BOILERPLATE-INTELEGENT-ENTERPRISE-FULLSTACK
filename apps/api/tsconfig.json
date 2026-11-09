@@ -1,0 +1,29 @@
+ {
+   "compilerOptions": {
+     "target": "ES2020",
+     "module": "ESNext",
+     "moduleResolution": "bundler",
+     "lib": ["ES2020"],
+     "noEmit": true,
+     "strict": true,
+     "esModuleInterop": true,
+     "skipLibCheck": true,
+     "forceConsistentCasingInFileNames": true,
+     "resolveJsonModule": true,
+     "declaration": false,
+     "sourceMap": false,
+     "baseUrl": ".",
+     "types": ["bun-types"],
+     "paths": {
+       "@repo/config": ["../../packages/config/src"],
+       "@repo/types": ["../../packages/types/src"],
+       "@repo/utils": ["../../packages/utils/src"],
+       "@repo/auth": ["../../packages/auth/src"],
+       "@repo/constants": ["../../packages/constants/src"],
+       "@repo/validation": ["../../packages/validation/src"],
+       "@repo/theme": ["../../packages/theme/src"]
+     }
+   },
+   "include": ["src/**/*.ts"],
+   "exclude": ["node_modules", "dist"]
+ }
