@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'plugin:@typescript-eslint/recommended', 'plugin:import/recommended', 'prettier'],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:import/recommended', 'prettier'],
   ignorePatterns: ['next-env.d.ts', '.next/**', 'node_modules/**'],
   rules: {
     'jsx-a11y/alt-text': 'off',

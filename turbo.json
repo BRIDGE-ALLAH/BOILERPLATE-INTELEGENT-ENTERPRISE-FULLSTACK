@@ -1,29 +1,86 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["NODE_ENV", "VERCEL_ENV"],
-  "globalDependencies": ["**/.env.local", "**/.env"],
-  "tasks": {
+  "globalEnv": [
+    "NODE_ENV",
+    "PORT",
+    "HOST",
+    "DATABASE_URL",
+    "JWT_SECRET",
+    "CORS_ORIGIN",
+    "NEXT_PUBLIC_API_URL",
+    "NEXT_PUBLIC_APP_NAME"
+  ],
+  "globalDependencies": [
+    "**/.env.local",
+    "**/.env"
+  ],
+  "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "build/**"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "build/**",
+        "!.next/cache/**"
+      ],
+      "env": [
+        "NODE_ENV",
+        "PORT",
+        "DATABASE_URL",
+        "JWT_SECRET",
+        "NEXT_PUBLIC_API_URL"
+      ],
       "cache": true
     },
     "lint": {
+      "dependsOn": ["^lint"],
       "outputs": [],
       "cache": true
     },
     "type-check": {
+      "dependsOn": ["^type-check"],
       "outputs": [],
       "cache": true
     },
     "test": {
-      "outputs": ["coverage/**"],
+      "dependsOn": ["^build"],
+      "outputs": [
+        "coverage/**"
+      ],
       "cache": false,
-      "dependsOn": ["^build"]
+      "env": [
+        "NODE_ENV",
+        "DATABASE_URL"
+      ]
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": [
+        "NODE_ENV",
+        "PORT",
+        "DATABASE_URL",
+        "JWT_SECRET",
+        "NEXT_PUBLIC_API_URL"
+      ]
+    },
+    "db:up": {
+      "cache": false,
+      "env": [
+        "DATABASE_URL"
+      ]
+    },
+    "db:down": {
+      "cache": false
+    },
+    "seed": {
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": false,
+      "env": [
+        "DATABASE_URL"
+      ]
     }
   },
   "remoteCache": {
