@@ -1,8 +1,8 @@
-import { ModelRegistry } from './modelRegistry';
+import { ModelRegistryImpl } from './modelRegistry';
 import { ModelEntry } from './types';
 
 describe('ModelRegistry', () => {
-  let registry: ModelRegistry;
+  let registry: ModelRegistryImpl;
   const modelEntry: ModelEntry = {
     name: 'test.model',
     version: '1.0.0',
@@ -11,7 +11,7 @@ describe('ModelRegistry', () => {
   };
 
   beforeEach(() => {
-    registry = new ModelRegistry();
+    registry = new ModelRegistryImpl();
   });
 
   test('starts in BUILDING state', () => {
