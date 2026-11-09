@@ -281,6 +281,21 @@
       },
     },
   },
+  "overrides": {
+    "@tiptap/core": "3.33.0",
+    "@tiptap/extension-bold": "3.33.0",
+    "@tiptap/extension-italic": "3.33.0",
+    "@tiptap/extension-list": "3.33.0",
+    "@tiptap/extension-list-item": "3.33.0",
+    "@tiptap/extension-placeholder": "3.33.0",
+    "@tiptap/extension-strike": "3.33.0",
+    "@tiptap/extension-text-align": "3.33.0",
+    "@tiptap/extension-text-style": "3.33.0",
+    "@tiptap/extension-underline": "3.33.0",
+    "@tiptap/pm": "3.33.0",
+    "@tiptap/react": "3.33.0",
+    "@tiptap/starter-kit": "3.33.0",
+  },
   "packages": {
     "@antfu/install-pkg": ["@antfu/install-pkg@0.1.1", "", { "dependencies": { "execa": "^5.1.1", "find-up": "^5.0.0" } }, "sha512-LyB/8+bSfa0DFGC06zpCEfs89/XoWZwws5ygEa5D+Xsm3OfI+aXQ86VgVG7Acyef+rSZ5HE7J8rrxzrQeM3PjQ=="],
 

@@ -18,9 +18,9 @@ export class EntityManagerBridge {
     await this.transaction.rollback();
   }
 
-  async read<T>(modelName: string, fields: string[], ids: (string | number)[]): Promise<Array<Pick<T, string>>> {
+  async read<T>(modelName: string, fields: string[], ids: (string | number)[]): Promise<Array<Partial<T>>> {
     const records = await this.entityManager.find(modelName, { id: { $in: ids } });
-    return records.map(record => ({ ...record } as Pick<T, string>));
+    return records.map((record: Record<string, any>) => ({ ...record } as Partial<T>));
   }
 
   async write<T>(modelName: string, values: Partial<T>): Promise<void> {
