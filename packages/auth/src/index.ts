@@ -3,6 +3,7 @@ export * from './jwt.js';
 export * from './password.js';
 export * from './guards.js';
 export * from './types.js';
+export * from './abac.js';
 
 // Fastify authentication plugin
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
@@ -12,6 +13,7 @@ import { ERROR_CODES, HTTP_STATUS } from '@repo/constants';
 import { jwtService, extractTokenFromHeader, TokenPayload, UserRole, Permission, hasPermission, isTokenPayload } from './jwt.js';
 import { passwordService } from './password.js';
 import { requireRole, requirePermission } from './guards.js';
+import { policyEngine, requirePolicy, attachResource } from './abac.js';
 
 // Public routes that don't require authentication
 const PUBLIC_ROUTES = [
@@ -31,6 +33,7 @@ function isPublicRoute(url: string): boolean {
 export async function createAuthPlugin(app: FastifyInstance) {
   // Decorate request with user type
   app.decorateRequest('user', null);
+  app.decorateRequest('resource', null);
 
   // Add authentication hook
   app.addHook('onRequest', async (req: FastifyRequest, rep: FastifyReply) => {
@@ -59,9 +62,10 @@ export async function createAuthPlugin(app: FastifyInstance) {
     req.user = payload;
   });
 
-  }
+}
 
 // Export auth utilities
 export { jwtService, passwordService };
 export { extractTokenFromHeader, hasPermission, hasRole, TokenPayload, UserRole, Permission, isTokenPayload };
 export { requireRole, requirePermission, attachUserToRequest };
+export { policyEngine, requirePolicy, attachResource };
